@@ -17,7 +17,7 @@ import { RELEASE } from "./src/config/download.js";
 /** { bytes, sha256 } of the same-origin APK, or null if it isn't there. */
 function readApkMeta() {
   if (/^https?:\/\//.test(RELEASE.url)) return null; // hosted elsewhere
-  const file = resolve(__dirname, "public", RELEASE.url.replace(/^\//, ""));
+  const file = resolve(import.meta.dirname, "public", RELEASE.url.replace(/^\//, ""));
   if (!existsSync(file)) return null;
   const data = readFileSync(file);
   return { bytes: data.length, sha256: createHash("sha256").update(data).digest("hex") };
