@@ -30,14 +30,14 @@ deploy: `*.apk` is git-ignored, so Vercel never has the file.
 1. Build the signed release APK in Android Studio (Build → Generate Signed
    App Bundle or APK, with the release keystore) and bump `versionCode` /
    `versionName` in the app's `build.gradle.kts` first.
-2. Rename it `histoury-<version>.apk`, e.g. `histoury-1.1.0.apk`.
+2. Rename it `histoury-v<version>.apk`, e.g. `histoury-v1.1.0.apk`.
 3. On GitHub: Releases → Draft a new release, tag `v<version>`, attach the
    APK, publish. The repo must be public, or visitors get a 404.
 4. In `RELEASE`, update `version`, `released`, `url` (the new tag and file
    name), `size`, and `sha256`:
 
    ```powershell
-   certutil -hashfile histoury-1.1.0.apk SHA256
+   certutil -hashfile histoury-v1.1.0.apk SHA256
    ```
 
 5. Commit and push; Vercel rebuilds. Check the download button fetches the

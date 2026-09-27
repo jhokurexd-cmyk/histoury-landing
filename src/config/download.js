@@ -32,12 +32,12 @@ export const RELEASE = {
   // APK is git-ignored, so Vercel never has the file, and a 57 MB binary
   // doesn't belong in every deploy anyway. The release tag must be
   // v<version> and the attached file must keep exactly this name.
-  url: "https://github.com/jhokurexd-cmyk/histoury-landing/releases/download/v1.0.0/histoury-1.0.0.apk",
+  url: "https://github.com/jhokurexd-cmyk/histoury-landing/releases/download/v1.0.0/histoury-v1.0.0.apk",
   // Published so a careful installer can verify the file they got is the
   // file that was built. Computed from the file at build time for a
   // same-origin APK; for this off-site one it is pasted from:
-  //   certutil -hashfile histoury-1.0.0.apk SHA256   (Windows)
-  //   shasum -a 256 histoury-1.0.0.apk               (macOS/Linux)
+  //   certutil -hashfile histoury-v1.0.0.apk SHA256   (Windows)
+  //   shasum -a 256 histoury-v1.0.0.apk               (macOS/Linux)
   sha256: APK ? APK.sha256 : "18a39a09fdf48980a9f9136e2b6016e73b4a55eeddd6bc65f53b14e5ed316b39",
 };
 
