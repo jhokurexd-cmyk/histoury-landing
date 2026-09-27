@@ -1,0 +1,11 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+.vite
+
+# The release build itself is not source. Drop the signed APK in
+# public/downloads/ at deploy time, or host it elsewhere and point
+# src/config/download.js at that URL.
+public/downloads/*.apk

@@ -1,0 +1,436 @@
+/* ===========================================================================
+   Histoury — landing page styles
+   ---------------------------------------------------------------------------
+   The token block, base reset, button primitives and theme switcher below
+   are copied verbatim from the admin panel (histoury-admin/src/index.css),
+   which in turn takes its palette from the Android app. Three surfaces, one
+   set of values: a coral here is the same coral on the phone.
+
+   When the panel's tokens move, re-copy this header rather than editing
+   the values in place — the point is that they cannot drift.
+   =========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&display=swap');
+
+/* ===========================================================================
+   Histoury design tokens
+   ---------------------------------------------------------------------------
+   Values are taken from the Android app's palette (theme/Color.kt) rather
+   than chosen independently, so a coral in the panel is the same coral a
+   visitor sees on their phone. When the app's palette moves, this is the one
+   place the panel has to follow.
+
+   Every token has a dark counterpart below. Nothing in the rest of this file
+   should hardcode a surface or text colour — if it does, it will not follow
+   the theme.
+   =========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* --- Brand: Histoury coral --- */
+  --brand-500: #FB4D4C;          /* app Primary */
+  --brand-600: #E23C3B;          /* hover / pressed */
+  --brand-700: #C22F2E;
+  --brand-soft: #FFEDEE;         /* app PrimarySoft */
+  --brand-soft-strong: #FFE0E2;  /* app PrimarySoftStrong */
+  --brand-contrast: #FFFFFF;     /* text on coral, in both themes */
+
+  /* Kept distinct from the coral on purpose: in the app this marks the AR
+     experience, so it should not read as just another primary action. */
+  --accent-gold: #F5A623;
+  --accent-gold-deep: #D98E12;
+
+  /* --- Shell: the sidebar and other dark chrome ---
+     Deep warm ink rather than coral. A full-height coral panel would fight
+     every coral control inside the page it frames. */
+  --shell-bg: #F2615A;
+  --shell-bg-2: #E0453F;
+  --shell-border: rgba(255, 255, 255, 0.18);
+  --shell-text: rgba(255, 255, 255, 0.88);
+  --shell-text-strong: #FFFFFF;
+  --shell-hover: rgba(255, 255, 255, 0.16);
+  /* Active nav sits as a white plate on the coral, so its label has to
+     switch to the brand colour to stay legible. */
+  --shell-active-bg: #FFFFFF;
+  --shell-active-text: #E0453F;
+
+  /* --- Surfaces --- */
+  /* Warm parchment rather than the app's cool grey. The panel is a desk
+     the content is laid out on; the app is a screen held in the sun. */
+  --bg-app: #FBF6F1;
+  --bg-card: #FFFFFF;
+  --bg-inset: #F7F1EB;           /* wells inside a card */
+  --bg-raised: #FFFFFF;          /* menus, popovers */
+  --bg-parchment: #F6EDE4;       /* hero banners */
+  --border: #EBE2D9;
+  --border-strong: #DCCFC2;
+
+  /* --- Text --- */
+  --text-primary: #2B2118;       /* warm ink, to match the parchment */
+  --text-secondary: #6B6158;
+  --text-muted: #9E958C;
+  --text-inverse: #FFFFFF;
+  --text-serif: #7A2E24;         /* deep terracotta, for serif headings */
+
+  /* --- Status --- */
+  --green-bg: #E1F7EA;  --green-text: #157A45;
+  --amber-bg: #FEF3D6;  --amber-text: #96660A;
+  --red-bg: #FDE6E6;    --red-text: #C22A2A;
+  --blue-bg: #E3EEFD;   --blue-text: #1D5FC2;
+  --gray-bg: #EEEBF1;   --gray-text: #5B6474;
+  --purple-bg: #EFE5FB; --purple-text: #6B21A8;
+
+  /* --- Elevation ---
+     Tinted toward the brand's warm neutral rather than pure black, which
+     keeps shadows from going grey-blue against the warm page. */
+  --shadow-xs: 0 1px 2px rgba(35, 27, 43, 0.05);
+  --shadow-sm: 0 1px 3px rgba(35, 27, 43, 0.08), 0 1px 2px rgba(35, 27, 43, 0.04);
+  --shadow-md: 0 4px 16px rgba(35, 27, 43, 0.09);
+  --shadow-lg: 0 16px 40px rgba(35, 27, 43, 0.16);
+  --ring: 0 0 0 3px rgba(251, 77, 76, 0.22);
+
+  /* --- Radii --- */
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 18px;
+  --r-pill: 999px;
+
+  /* --- Type --- */
+  --font-display: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  /* A serif for page titles. The panel administers heritage content, and a
+     typeface with some age in it says that far more economically than any
+     amount of ornament. Display use only — body copy stays in the sans,
+     where it is legible. */
+  --font-serif: 'Playfair Display', Georgia, serif;
+
+  --sidebar-w: 264px;
+
+}
+
+/* ---------------------------------------------------------------------------
+   Dark theme
+   ---------------------------------------------------------------------------
+   Three neutral steps, not two — the panel leans on cards floating above a
+   page, and collapsing that to a single grey flattens every screen. The
+   coral lightens slightly: fully saturated red on near-black vibrates.
+   --------------------------------------------------------------------------- */
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --brand-500: #FF6B69;
+  --brand-600: #FF8280;
+  --brand-700: #FF9A98;
+  --brand-soft: #3A2426;
+  --brand-soft-strong: #4C2A2D;
+  --brand-contrast: #1A1216;
+
+  --accent-gold: #FFBB4D;
+  --accent-gold-deep: #F5A623;
+
+  /* The sidebar is already dark in light mode, so in dark mode it steps
+     *up* to sit level with the cards instead of down into the page. */
+  /* The coral is dropped to a deep ember rather than kept bright: a
+     saturated red panel beside a near-black page is the one thing that
+     genuinely hurts to look at after dark. */
+  --shell-bg: #4A1F1D;
+  --shell-bg-2: #351715;
+  --shell-border: rgba(255, 255, 255, 0.10);
+  --shell-text: rgba(255, 255, 255, 0.76);
+  --shell-text-strong: #FFFFFF;
+  --shell-hover: rgba(255, 255, 255, 0.10);
+  --shell-active-bg: #FF6B69;
+  --shell-active-text: #2A1210;
+
+  --bg-app: #14100F;
+  --bg-card: #1E1917;
+  --bg-inset: #272120;
+  --bg-raised: #2C2523;
+  --bg-parchment: #2A211E;
+  --border: #383029;
+  --border-strong: #4A403A;
+
+  --text-primary: #F5F0EB;
+  --text-secondary: #B5ABA2;
+  --text-muted: #857C74;
+  --text-inverse: #14100F;
+  --text-serif: #F0A79C;
+
+  /* Status tints are rebuilt as dark washes. Light pastels on a dark card
+     glow like backlit stickers. */
+  --green-bg: #16301F;  --green-text: #5FD48F;
+  --amber-bg: #33270E;  --amber-text: #F0B95C;
+  --red-bg: #3A1C1C;    --red-text: #FF7A7A;
+  --blue-bg: #16243A;   --blue-text: #6FA8F5;
+  --gray-bg: #262329;   --gray-text: #AEA8B4;
+  --purple-bg: #2A1E3A; --purple-text: #B98CE8;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.45), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.6);
+  --ring: 0 0 0 3px rgba(255, 107, 105, 0.3);
+}
+
+/* ---------- Base ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  /* Only colour transitions. Animating `all` here makes every layout
+     change on every page crawl. */
+  transition: background-color 0.2s ease, color 0.2s ease;
+  background: var(--bg-app);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+button {
+  font-family: var(--font-body);
+}
+
+::selection {
+  background: var(--brand-soft-strong);
+  color: var(--text-primary);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand-500);
+  outline-offset: 2px;
+}
+
+/* ---------- Buttons ---------- */
+button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: var(--r-sm);
+  background: var(--brand-500);
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.15s ease, opacity 0.15s ease, transform 0.05s ease;
+  white-space: nowrap;
+}
+
+/* Icons keep their size inside buttons. Without this, a button squeezed
+   for width (like the card action rows) shrinks its SVG before its text. */
+button svg {
+  flex-shrink: 0;
+}
+
+button:hover {
+  background: var(--brand-600);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--brand-500);
+  color: var(--brand-contrast);
+  /* Same 1px border as .btn-secondary (just invisible), so primary and
+     secondary buttons side by side are exactly the same height. */
+  border: 1px solid transparent;
+  box-shadow: 0 3px 10px rgba(251, 77, 76, 0.28);
+}
+
+.btn-primary:hover {
+  background: var(--brand-600);
+}
+
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+}
+
+.btn-secondary:hover {
+  background: var(--brand-soft);
+  border-color: var(--brand-500);
+  color: var(--brand-500);
+}
+
+/* A disabled-looking secondary, for actions a row cannot currently offer —
+   "Content" on a site that has none yet. Still focusable and still says
+   why, unlike a truly disabled button that explains nothing. */
+.btn-secondary.is-muted {
+  color: var(--text-muted);
+  border-color: var(--border);
+  background: var(--bg-inset);
+}
+
+.btn-danger {
+  background: var(--red-text);
+  color: #fff;
+  border: 1px solid transparent;
+}
+
+.btn-danger:hover {
+  background: #A61F1F;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 8px 10px;
+}
+
+.btn-ghost:hover {
+  background: var(--bg-app);
+  color: var(--text-primary);
+}
+
+.btn-sm {
+  padding: 7px 12px;
+  font-size: 13px;
+}
+
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-sm);
+}
+
+/* ---------- Cards ---------- */
+
+.card {
+  background: var(--bg-card);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-xs);
+}
+
+.card-pad {
+  padding: 22px;
+}
+
+/* ---------- Appearance switcher ---------- */
+
+.theme-toggle {
+  position: relative;
+}
+
+.theme-toggle-btn {
+  height: 36px;
+  padding: 0 8px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.theme-toggle-btn.open {
+  background: var(--brand-soft);
+  border-color: var(--brand-500);
+  color: var(--brand-500);
+}
+
+.theme-toggle-caret {
+  opacity: 0.6;
+  transition: transform 0.15s ease;
+}
+
+.theme-toggle-btn.open .theme-toggle-caret {
+  transform: rotate(180deg);
+}
+
+.theme-toggle-btn:hover {
+  background: var(--brand-soft);
+  border-color: var(--brand-500);
+  color: var(--brand-500);
+}
+
+.theme-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 186px;
+  padding: 7px;
+  border-radius: var(--r-md);
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  z-index: 60;
+}
+
+.theme-menu-title {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 6px 10px 8px;
+}
+
+.theme-menu-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border: none;
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+}
+
+.theme-menu-label {
+  flex: 1;
+}
+
+.theme-menu-item:hover {
+  background: var(--bg-inset);
+}
+
+.theme-menu-item.active {
+  background: var(--brand-soft);
+  color: var(--brand-500);
+  font-weight: 700;
+}
+
