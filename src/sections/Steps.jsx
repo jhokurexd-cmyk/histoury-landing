@@ -19,7 +19,7 @@ const STEPS = [
   },
   {
     kicker: "Learn",
-    title: "Unlock the story by being there.",
+    title: "Unlock its story by being there.",
     body: "A site's full history opens when you visit it in person: verified narratives, a timeline of key events, stories and sources, plus an audio guide for eyes-up exploring.",
     points: ["Verified narratives with sources", "Timelines and audio guides", "Unlocks when you arrive"],
     shot: siteInfoShot,

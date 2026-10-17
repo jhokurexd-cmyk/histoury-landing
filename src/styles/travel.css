@@ -79,7 +79,7 @@
 
 /* Original photo-led composition with the approved headline typography. */
 .travel-copy h1.travel-app-title { font-family: var(--font-head); font-weight: 800; font-size: clamp(52px, 5.5vw, 78px); letter-spacing: -0.055em; }
-.travel-copy h1.travel-app-title > span { font-family: var(--font-serif); font-style: italic; font-weight: 600; }
+.travel-copy h1.travel-app-title > span { font-family: var(--font-accent); font-style: italic; font-weight: 400; font-synthesis: none; }
 .travel-hero { background: linear-gradient(to bottom, transparent 55%, var(--paper)), radial-gradient(ellipse at 100% 15%, var(--coral-soft), transparent 58%); }
 @media(max-width:600px) { .travel-copy h1.travel-app-title { font-size: clamp(48px, 11vw, 64px); } }
 
@@ -284,3 +284,12 @@
 .hero-highlights strong { display: block; font-size: 13px; font-weight: 600; color: var(--ink); }
 .hero-highlights li div > span { display: block; font-size: 11px; margin-top: 4px; line-height: 1.6; color: var(--ink-2); }
 @media(max-width: 700px) { .hero-highlights { gap: 22px; grid-template-columns: 1fr; margin-top: 30px; padding-top: 24px; }.hero-highlights li { gap: 14px; }.hero-highlights strong { font-size: 14px; }.hero-highlights li div > span { font-size: 12px; } }
+
+
+
+.ar-note a { color: var(--coral-text); text-decoration: underline; text-underline-offset: 3px; }
+
+.ar-note { align-items: flex-start; }
+.ar-note > svg { flex-shrink: 0; margin-top: 3px; }
+.ar-note > span { min-width: 0; text-wrap: pretty; }
+

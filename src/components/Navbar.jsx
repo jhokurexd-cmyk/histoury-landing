@@ -52,6 +52,7 @@ function Navbar({ onLanding = true }) {
   // phone, so any link closes it — and so does Escape.
   const closeMenu = () => setMenuOpen(false);
 
+
   useEffect(() => {
     if (!menuOpen) return undefined;
     const onKeyDown = (event) => {

@@ -17,10 +17,10 @@ export const CONTACT = {
 // In reading order. Each href is a section id on the page, and the header
 // underlines whichever one is on screen.
 export const NAV_LINKS = [
+  { href: "#about", label: "Intramuros" },
   { href: "#ar", label: "AR" },
   { href: "#how", label: "How it works" },
   { href: "#features", label: "Features" },
-  { href: "#about", label: "Intramuros" },
   { href: "#install", label: "Install" },
   { href: "#faq", label: "FAQ" },
 ];

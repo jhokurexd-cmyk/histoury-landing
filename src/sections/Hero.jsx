@@ -8,7 +8,7 @@ function Hero() {
       <div className="travel-hero-inner">
         <div className="travel-copy">
           <p className="travel-eyebrow"><span /> Your Intramuros guide for Android</p>
-          <h1 id="hero-title" className="travel-app-title">Intramuros,<br /><span>brought back<br />to life.</span></h1>
+          <h1 id="hero-title" className="travel-app-title">History,<br /><span>brought back<br />to life.</span></h1>
           <p className="travel-intro">Meet Histoury, your free heritage guide. Explore Intramuros, hear its stories, and see the past rebuilt in augmented reality through your phone.</p>
           <div className="travel-actions">
             <a className="btn-primary" href="#install">Get the app <Icon name="arrow-right" size={18} /></a>
@@ -34,4 +34,5 @@ function Hero() {
   );
 }
 export default Hero;
+
 
