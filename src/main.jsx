@@ -5,6 +5,7 @@ import { createRoot } from "react-dom/client";
 // override them without !important.
 import "./styles/shared.css";
 import "./styles/landing.css";
+import "./styles/travel.css";
 import App from "./App.jsx";
 import { ThemeProvider } from "./context/ThemeContext.jsx";
 

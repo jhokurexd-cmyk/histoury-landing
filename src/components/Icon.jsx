@@ -16,6 +16,35 @@ export function Icon({ name, size = 18, ...rest }) {
   const props = { ...base, width: size, height: size, ...rest };
 
   switch (name) {
+    case "route":
+      return (
+        <svg {...props}>
+          <circle cx="6" cy="5" r="2" />
+          <circle cx="18" cy="19" r="2" />
+          <path d="M8 5h8a4 4 0 0 1 0 8H8a3 3 0 0 0 0 6h8" />
+        </svg>
+      );
+    case "compass":
+      return (
+        <svg {...props}>
+          <circle cx="12" cy="12" r="9" />
+          <path d="m16 8-2.5 5.5L8 16l2.5-5.5Z" />
+        </svg>
+      );
+    case "book-open":
+      return (
+        <svg {...props}>
+          <path d="M12 5C9 3 5 3 3 4v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-2-1-6-1-9 1Zm0 0v15" />
+          <path d="m6 8 3 1m-3 3 3 1m6-4 3-1m-3 5 3-1" />
+        </svg>
+      );
+    case "visit-history":
+      return (
+        <svg {...props}>
+          <path d="M3 11a9 9 0 1 1 2.6 7.4M3 4v7h7" />
+          <path d="M12 7v5l3 2" />
+        </svg>
+      );
     case "dashboard":
       return (
         <svg {...props}>

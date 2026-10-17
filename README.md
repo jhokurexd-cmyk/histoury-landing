@@ -1,7 +1,8 @@
 # Histoury — landing page
 
 The public page people land on to download the Histoury Android app. One
-scrolling document: a hero with real app screens, "how it works" as four
+scrolling document: a pinned, scroll-driven hero over Intramuros (the gate of
+Fort Santiago parts to reveal the gardens, then a slider of sites), "how it works" as four
 steps beside a pinned phone, a feature grid, photographs of Intramuros, the
 install guide, FAQ and a closing call to action. The Privacy Policy, Terms of
 Use and Cookie Policy render in place of the sections at `#privacy-policy`,

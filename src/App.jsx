@@ -3,8 +3,12 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import CookieBanner from "./components/CookieBanner";
+import Chatbot from "./components/Chatbot";
 import LegalPage from "./components/LegalPage";
 import Hero from "./sections/Hero";
+import ProductDemo from "./sections/ProductDemo";
+import ArShowcase from "./sections/ArShowcase";
+import WhyHistoury from "./sections/WhyHistoury";
 import Steps from "./sections/Steps";
 import Features from "./sections/Features";
 import WalledCity from "./sections/WalledCity";
@@ -67,9 +71,12 @@ function App() {
         ) : (
           <>
             <Hero />
+            <WhyHistoury />
+            <WalledCity />
+            <ProductDemo />
+            <ArShowcase />
             <Steps />
             <Features />
-            <WalledCity />
             {/* The APK is sideloaded: without the install steps, the
                 download leads people to a file Android warns them about
                 and nothing explaining why. */}
@@ -82,6 +89,7 @@ function App() {
 
       <Footer />
       <CookieBanner />
+      <Chatbot />
     </>
   );
 }

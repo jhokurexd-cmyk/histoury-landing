@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import QRCode from "qrcode";
 import { RELEASE } from "./src/config/download.js";
 
 // Deliberately plainer than the admin panel's config. The landing page is a
@@ -23,8 +24,24 @@ function readApkMeta() {
   return { bytes: data.length, sha256: createHash("sha256").update(data).digest("hex") };
 }
 
-export default defineConfig(({ command }) => {
+// The QR code beside the download button, drawn here at build time from
+// the same URL the button uses, so a new release can never leave behind a
+// code that points at the old file. It ships as an inline SVG string: no QR
+// library in the page bundle.
+async function downloadQrSvg() {
+  const url = /^https?:\/\//.test(RELEASE.url) ? RELEASE.url : null;
+  if (!url) return null; // same-origin APK: the page itself knows its host
+  return QRCode.toString(url, {
+    type: "svg",
+    margin: 0,
+    errorCorrectionLevel: "M",
+    color: { dark: "#1A1310", light: "#00000000" },
+  });
+}
+
+export default defineConfig(async ({ command }) => {
   const apk = readApkMeta();
+  const qrSvg = await downloadQrSvg();
 
   if (!apk && !/^https?:\/\//.test(RELEASE.url)) {
     const message = `The APK the download button links to is missing: public${RELEASE.url}`;
@@ -38,6 +55,7 @@ export default defineConfig(({ command }) => {
     plugins: [react()],
     define: {
       __APK_META__: JSON.stringify(apk),
+      __DOWNLOAD_QR_SVG__: JSON.stringify(qrSvg),
     },
   };
 });

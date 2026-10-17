@@ -1,17 +1,17 @@
 import manilaCathedral from "../assets/photos/manila-cathedral.webp";
-import generalLuna from "../assets/photos/general-luna.webp";
-import aseanGarden from "../assets/photos/asean-garden.webp";
-import puertaReal from "../assets/photos/puerta-real.webp";
-import plazaEspana from "../assets/photos/plaza-espana.webp";
+import fortSantiago from "../assets/photos/fort-santiago.jpg";
+import sanAgustin from "../assets/photos/san-agustin.jpg";
+import casaManila from "../assets/photos/casa-manila.jpg";
+import baluarte from "../assets/photos/baluarte-san-diego.jpg";
+import credits from "../assets/photos/landmark-credits.json";
 
-// Public-domain (CC0) photographs from Wikimedia Commons, the same set the
-// app's Places use — see histoury_functions/scripts/place-photos/manifest.json.
+// Landmark photographs and their Wikimedia Commons attribution below.
 const PLACES = [
-  { src: manilaCathedral, name: "Plaza de Roma", note: "Manila Cathedral beyond" },
-  { src: generalLuna, name: "General Luna Street", note: "Stone-and-wood houses" },
-  { src: aseanGarden, name: "ASEAN Garden", note: "By the Puerta del Parian" },
-  { src: puertaReal, name: "Puerta Real Gardens", note: "Along the old walls" },
-  { src: plazaEspana, name: "Plaza de España", note: "A plaza inside the walls" },
+  { src: manilaCathedral, name: "Manila Cathedral", note: "The cathedral of Intramuros" },
+  { src: fortSantiago, name: "Fort Santiago", note: "The city's historic citadel" },
+  { src: sanAgustin, name: "San Agustin Church", note: "A heritage church and monastery" },
+  { src: casaManila, name: "Casa Manila", note: "A glimpse of colonial life" },
+  { src: baluarte, name: "Baluarte de San Diego", note: "The old city's stone defenses" },
 ];
 
 /**
@@ -52,7 +52,17 @@ function WalledCity() {
         ))}
       </ul>
 
-      <p className="credit">Photographs: Wikimedia Commons, public domain (CC0).</p>
+      <details className="credit">
+        <summary>Photo credits · Wikimedia Commons</summary>
+        <p>Manila Cathedral: public domain (CC0). Images cropped to fit.</p>
+        {credits.map((credit) => (
+          <p key={credit.site}>
+            <a href={credit.source} target="_blank" rel="noreferrer">{credit.site}</a>
+            {" — "}{credit.artist.replace(/<[^>]*>/g, "")}{" · "}
+            <a href={credit.licenseUrl} target="_blank" rel="noreferrer">{credit.license}</a>
+          </p>
+        ))}
+      </details>
     </section>
   );
 }

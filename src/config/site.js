@@ -5,7 +5,8 @@
  * links nowhere reads as a broken page, so empty entries are skipped.
  */
 export const CONTACT = {
-  email: "histoury.capstone@gmail.com",
+  email: "support@explorehistoury.com",
+  alternateEmail: "explorehistoury@gmail.com",
   social: [
     { name: "Facebook", icon: "facebook", url: "" },
     { name: "Instagram", icon: "instagram", url: "" },
@@ -16,6 +17,7 @@ export const CONTACT = {
 // In reading order. Each href is a section id on the page, and the header
 // underlines whichever one is on screen.
 export const NAV_LINKS = [
+  { href: "#ar", label: "AR" },
   { href: "#how", label: "How it works" },
   { href: "#features", label: "Features" },
   { href: "#about", label: "Intramuros" },

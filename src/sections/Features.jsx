@@ -96,9 +96,9 @@ function Features() {
               The AR button simply stays hidden.
             </p>
           </div>
-          <a className="btn-outline" href="#install">
-            Check requirements
-            <Icon name="arrow-right" size={15} />
+          <a className="btn-outline" href="https://developers.google.com/ar/devices" target="_blank" rel="noopener noreferrer">
+            Check device compatibility
+            <Icon name="external-link" size={15} />
           </a>
         </article>
       </div>

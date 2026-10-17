@@ -2,28 +2,32 @@ import { Icon } from "../components/Icon";
 
 const FAQS = [
   {
-    q: "Is Histoury free?",
-    a: "Yes, and there are no ads. You can browse sites, read their stories and listen to the audio guides without making an account. An account only comes in when you want to leave a rating or a review.",
+    q: "What is Histoury?",
+    a: "Histoury is a free Android heritage guide for Intramuros, Manila. Plan your route, find historical sites, unlock their stories when you arrive, and keep track of the places you've visited. On supported phones, you can also see 3D reconstructions in augmented reality.",
   },
   {
-    q: "Is it on the Play Store?",
-    a: "Not yet. Until it is, this page is the only place we publish the app, and the download here is the same build we'd ship to the store.",
+    q: "Do I need an account?",
+    a: "Yes. Create an account and sign in to use Histoury.",
   },
   {
-    q: "Is there an iPhone version?",
-    a: "Not today. Histoury is an Android app, and the AR features are built on ARCore. If that changes, this page will be the first place it's announced.",
+    q: "Can I use Histoury without AR?",
+    a: "Yes. AR requires an ARCore-compatible phone, but the map, route planning, historical information, audio guides and visit history are still available without it. If your phone doesn't support AR, the AR button stays hidden. Use Check device compatibility in the Features section to check Google's supported-device list.",
   },
   {
-    q: "Why does it want my location?",
-    a: "To place AR content correctly and to tell you when you've reached a site. Background location is what lets a site's story reach you as you arrive rather than after you've opened the app — and you can decline it and still use everything else.",
+    q: "Does Histoury work offline?",
+    a: "You can download a site's 3D model and narration before your visit to use its AR experience without a signal. Download the content while you're connected; other features may still need internet access.",
   },
   {
-    q: "My phone says AR isn't supported.",
-    a: "Some phones don't ship ARCore, and the AR scenes need it. Everything else — the map, site stories, audio guides, nearby places, reviews — works normally; the AR button is just hidden rather than shown and broken.",
+    q: "Why does the app ask for location and camera access?",
+    a: "Location helps Histoury find nearby sites and recognise when you arrive so their history can unlock. Background location enables arrival notifications when the app isn't open. Camera access is used for AR experiences and capturing AR photos.",
   },
   {
-    q: "How do updates work?",
-    a: "Because the app is sideloaded, it won't update itself. Come back to this page and install the newer APK over the top — your saved sites and account stay where they are.",
+    q: "Can Histoury help me plan my visit?",
+    a: "Yes. Choose the sites you want to visit and create an itinerary with stops, distances and travel times. You can reorder your stops, optimise the route and save the plan for later.",
+  },
+  {
+    q: "How do I update Histoury?",
+    a: "Return to this website and download the latest APK. Install it over your existing version rather than uninstalling the app first. Updates aren't installed automatically through the Play Store.",
   },
 ];
 
@@ -60,3 +64,6 @@ function Faq() {
 }
 
 export default Faq;
+
+
+

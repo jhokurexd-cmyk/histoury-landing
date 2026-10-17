@@ -1,0 +1,279 @@
+/* Travel-inspired presentation: Histoury's coral remains the primary accent. */
+:root { --paper: #fffdfb; --surface: #fff; --surface-2: #fff4f0; --ink: #25283e; --ink-2: #747482; --section-y: clamp(64px, 7vw, 100px); }
+[data-theme="dark"] { --paper: #151416; --surface: #201e22; --surface-2: #302326; --ink: #faf4ef; --ink-2: #b9afb5; }
+.nav { top: 0; max-width: 1200px; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.nav.nav-scrolled { background: var(--nav-bg-scrolled); border-radius: 0 0 20px 20px; }
+.nav-inner { height: 94px; padding: 0 24px; }
+.nav-brand { color: var(--ink); font-size: 25px; }
+.nav-links a { color: var(--ink-2); font-size: 13px; }
+.nav-cta { border-radius: 10px; }
+.travel-hero { position: relative; padding: 150px var(--gutter) 45px; overflow: hidden; background: radial-gradient(ellipse at 100% 15%, var(--coral-soft), transparent 58%); }
+.travel-hero-inner { max-width: 1120px; margin: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 45px; align-items: center; }
+.travel-eyebrow { color: var(--coral-text); text-transform: uppercase; letter-spacing: 2px; font-size: 11px; font-weight: 700; display: flex; gap: 10px; align-items: center; }
+.travel-eyebrow > span { width: 20px; height: 2px; background: var(--coral); }
+.travel-copy h1 { margin: 25px 0; font-family: var(--font-serif); font-size: clamp(54px, 5.6vw, 82px); line-height: 1.08; font-weight: 600; letter-spacing: -3px; color: var(--ink); }
+.travel-copy h1 > span { color: var(--coral); position: relative; }
+.travel-intro { max-width: 425px; font-size: 15px; line-height: 1.9; color: var(--ink-2); }
+.travel-actions { display: flex; align-items: center; gap: 28px; margin: 30px 0 23px; }
+.travel-actions .btn-primary { border-radius: 11px; padding: 17px 23px; font-size: 13px; box-shadow: 0 10px 24px #fb4d4c26; }
+.travel-watch { display: flex; align-items: center; gap: 11px; color: var(--ink); font-size: 12px; text-decoration: none; }
+.travel-watch > span { width: 41px; height: 41px; display: grid; place-items: center; border: 1px solid var(--line-strong); border-radius: 50%; color: var(--coral); }
+.travel-footnote { display: flex; align-items: center; gap: 8px; color: var(--ink-2); font-size: 11px; }
+.travel-footnote svg { color: var(--coral); }
+.travel-visual { height: 495px; position: relative; }
+.travel-main-photo { position: absolute; width: 74%; height: 445px; top: 0; left: 4%; object-fit: cover; border-radius: 180px 180px 130px 130px; border: 7px solid var(--paper); transform: rotate(-7deg); }
+.travel-small-photo { position: absolute; width: 43%; height: 245px; right: -2%; bottom: 0; object-fit: cover; border: 7px solid var(--paper); border-radius: 110px; transform: rotate(10deg); }
+.travel-orbit { position: absolute; width: 103%; height: 85%; top: 35px; border: 1px dashed #fb4d4c65; border-radius: 50%; transform: rotate(-28deg); }
+.travel-location { position: absolute; left: -12px; bottom: 46px; padding: 14px 19px; display: flex; align-items: center; gap: 12px; border-radius: 13px; background: var(--surface); box-shadow: 0 15px 45px #29283e12; transform: rotate(-4deg); }
+.travel-location > span:first-child { background: var(--coral-soft); color: var(--coral); padding: 10px; border-radius: 50%; }
+.travel-location strong { display: block; font-size: 12px; }.travel-location small { display: block; color: var(--ink-2); font-size: 10px; margin-top: 3px; }
+.travel-stamp { position: absolute; top: 28px; right: -5px; display: flex; gap: 10px; align-items: center; background: var(--surface); box-shadow: 0 12px 40px #29283e0d; padding: 15px; border-radius: 12px; font-size: 11px; transform: rotate(7deg); }.travel-stamp svg { color: var(--coral); }
+.travel-spark { position: absolute; right: 15px; top: 170px; font-size: 68px; color: var(--coral); }
+.travel-explore-bar { max-width: 1000px; margin: 55px auto 0; padding: 22px 28px; display: flex; justify-content: space-between; align-items: center; gap: 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 16px 45px #29283e08; text-decoration: none; color: var(--ink); }
+.travel-explore-bar > span { display: flex; align-items: center; gap: 13px; }.travel-explore-bar svg { color: var(--coral); }.travel-explore-bar small { display: block; font-size: 8px; letter-spacing: 1.4px; color: var(--ink-2); margin-bottom: 4px; }.travel-explore-bar strong { display: block; font-size: 12px; font-weight: 600; }.travel-bar-arrow { background: var(--coral); padding: 13px; border-radius: 50%; }.travel-bar-arrow svg { color: white; }
+.section-title { font-size: clamp(32px, 3.5vw, 46px); line-height: 1.2; letter-spacing: -1.7px; }.section-title .accent { font-family: inherit; font-size: inherit; font-style: normal; color: var(--coral-text); }.section-sub { font-size: 14px; line-height: 1.9; }.kicker { font-size: 10px; letter-spacing: 1.8px; }.section-head { margin-bottom: 42px; }
+.why-grid { gap: 28px; }.why-tile { border: 0; background: transparent; box-shadow: none; padding: 25px; }.why-tile .tile-icon { width: 53px; height: 53px; border-radius: 16px; margin-bottom: 23px; }.why-tile h3 { font-size: 17px; }.why-tile p { font-size: 13px; }
+.arches { align-items: stretch; gap: 22px; }.arch-item { background: var(--surface); border-radius: 17px; box-shadow: 0 14px 35px #29283e09; overflow: hidden; border: 1px solid var(--line); }.arch-item .arch,.arch-item:nth-child(n) .arch { border-radius: 0; aspect-ratio: 4 / 5; }.arch-item figcaption { padding: 17px 13px; }.arch-item figcaption strong { font-size: 13px; }.arch-item figcaption span { font-size: 10px; }.credit { margin-top: 25px; }
+.final { margin: 40px auto; max-width: 1136px; border-radius: 32px 90px 32px 32px; overflow: hidden; }.final-title { font-size: clamp(36px, 4.5vw, 60px); }.site-footer { background: var(--paper); }
+@media(min-width: 1000px) { .nav-links { gap: 22px; }.nav-actions { gap: 12px; } }
+@media(max-width: 800px) { .travel-hero { padding-top: 120px; }.travel-hero-inner { gap: 24px; }.travel-copy h1 { font-size: 56px; }.travel-visual { height: 405px; }.travel-main-photo { height: 365px; }.travel-small-photo { height: 195px; }.travel-actions { gap: 15px; }.travel-stamp { right: 0; }.travel-explore-bar { padding: 20px; }.travel-explore-bar > span:nth-child(3) { display: none; }.nav-inner { height: 76px; } }
+@media(max-width: 600px) { .travel-hero-inner { grid-template-columns: 1fr; }.travel-copy h1 { font-size: clamp(49px, 12vw, 66px); }.travel-intro { font-size: 14px; }.travel-hero { padding-top: 110px; }.travel-visual { max-width: 430px; width: 100%; margin: 20px auto 0; height: 420px; }.travel-main-photo { height: 380px; }.travel-small-photo { height: 215px; right: 1%; }.travel-location { left: 0; }.travel-stamp { right: 4%; }.travel-explore-bar { margin-top: 30px; padding: 17px; }.travel-explore-bar > span:nth-child(2) { display: none; }.travel-explore-bar strong { font-size: 12px; }.nav-brand { font-size: 22px; }.section-head.split { gap: 10px; }.final { margin: 20px 16px; border-radius: 25px; }.arches .arch-item { flex-basis: 75%; }.arch-item:nth-child(n) .arch { aspect-ratio: 4 / 3; } }
+
+/* App-first hero retained from the approved design. */
+.app-hero {
+  position: relative;
+  padding: 155px var(--gutter) 90px;
+  text-align: center;
+  background:
+    linear-gradient(to bottom, transparent 55%, var(--paper) 100%),
+    radial-gradient(ellipse at 15% 95%, var(--coral-soft), transparent 65%),
+    radial-gradient(ellipse at 95% 80%, var(--coral-soft), transparent 65%),
+    var(--paper);
+}
+.app-hero-copy { max-width: 1120px; margin: 0 auto; }
+.app-hero h1 { margin: 24px 0 32px; color: var(--ink); font-family: var(--font-head); font-size: clamp(56px, 9vw, 112px); line-height: 1.02; letter-spacing: -0.065em; font-weight: 800; }
+.app-hero h1 span { color: var(--coral); font-family: var(--font-serif); font-style: italic; font-weight: 700; letter-spacing: -0.055em; }
+.app-hero-sub { max-width: 775px; margin: 0 auto; color: var(--ink-2); font-size: clamp(16px, 1.8vw, 20px); line-height: 1.65; }
+.app-hero-actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 15px; margin-top: 38px; }
+.app-hero-how { display: inline-flex; align-items: center; justify-content: center; gap: 14px; min-height: 58px; padding: 16px 26px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface); color: var(--ink); font-size: 14px; font-weight: 600; text-decoration: none; }
+.app-hero-how:hover { border-color: var(--coral); }
+@media(max-width: 600px) { .app-hero { padding-top: 120px; padding-bottom: 65px; }.app-hero h1 { font-size: clamp(43px, 9.6vw, 58px); }.app-hero .kicker { font-size: 9px; }.app-hero-sub { font-size: 15px; }.app-hero-actions { gap: 12px; margin-top: 28px; } }
+
+/* Introduce the actual app within the first screen. */
+.app-hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 50px; align-items: center; padding: 145px max(var(--gutter), calc((100vw - 1120px) / 2)) 90px; text-align: left; }
+.app-hero-copy { width: 100%; }
+.app-hero h1 { font-size: clamp(52px, 5.8vw, 78px); line-height: 1.08; margin-top: 23px; }
+.app-hero-sub { font-size: 16px; line-height: 1.8; }
+.app-hero-actions { justify-content: flex-start; gap: 12px; }
+.app-hero-how { padding: 16px 19px; font-size: 12px; }
+.app-hero-preview { position: relative; display: flex; align-items: center; justify-content: center; gap: 16px; min-width: 0; padding: 35px 0; }
+.app-preview-halo { position: absolute; inset: 6% -5%; border-radius: 50%; background: radial-gradient(ellipse, var(--coral-soft) 20%, transparent 70%); }
+.app-hero-preview figure { position: relative; margin: 0; min-width: 0; flex: 1; max-width: 215px; }
+.app-hero-preview .device { --w: 100%; width: 100%; box-shadow: 0 20px 40px -20px #30273655; }
+.app-preview-map { transform: translateY(16px) rotate(-7deg); }
+.app-preview-ar { transform: translateY(-16px) rotate(7deg); }
+.app-hero-preview figcaption { display: flex; justify-content: center; align-items: center; gap: 6px; color: var(--ink); font-size: 10px; font-weight: 600; margin-top: 18px; white-space: nowrap; }
+.app-hero-preview figcaption svg { color: var(--coral); }
+@media(max-width: 900px) and (min-width: 601px) { .app-hero { gap: 25px; }.app-hero h1 { font-size: 52px; }.app-hero-preview { gap: 10px; }.app-hero-preview figcaption { font-size: 8px; } }
+@media(max-width: 600px) { .app-hero { grid-template-columns: 1fr; gap: 25px; text-align: center; padding: 115px var(--gutter) 55px; }.app-hero h1 { font-size: clamp(43px, 9.6vw, 58px); }.app-hero-sub { font-size: 15px; }.app-hero-actions { justify-content: center; }.app-hero-preview { width: min(100%, 360px); margin: 0 auto; padding: 25px 12px; gap: 17px; } }
+
+/* Original photo-led composition with the approved headline typography. */
+.travel-copy h1.travel-app-title { font-family: var(--font-head); font-weight: 800; font-size: clamp(52px, 5.5vw, 78px); letter-spacing: -0.055em; }
+.travel-copy h1.travel-app-title > span { font-family: var(--font-serif); font-style: italic; font-weight: 600; }
+.travel-hero { background: linear-gradient(to bottom, transparent 55%, var(--paper)), radial-gradient(ellipse at 100% 15%, var(--coral-soft), transparent 58%); }
+@media(max-width:600px) { .travel-copy h1.travel-app-title { font-size: clamp(48px, 11vw, 64px); } }
+
+/* Small motion illustrations, active only while their cards are in view. */
+.why-motion { perspective: 120px; }
+.why-motion svg { overflow: visible; }
+.why-checkmark { stroke-dasharray: 1; stroke-dashoffset: 0; }
+.why-ar-cube { transform-origin: 16px 16px; }
+.why-ar-corners { transform-origin: center; }
+.why-map-left { transform-origin: 12px 16px; }
+.why-map-right { transform-origin: 20px 16px; }
+.why-tile.is-in .why-checkmark { animation: why-draw-check 4.5s ease-in-out infinite; }
+.why-tile.is-in .why-check { animation: why-check-pop 4.5s ease-in-out infinite; }
+.why-tile.is-in .why-ar-cube { animation: why-cube-turn 5s ease-in-out infinite; }
+.why-tile.is-in .why-ar-corners { animation: why-ar-scan 5s ease-in-out infinite; }
+.why-tile.is-in .why-map-left { animation: why-unfold-left 5.5s ease-in-out infinite; }
+.why-tile.is-in .why-map-right { animation: why-unfold-right 5.5s ease-in-out infinite; }
+.why-tile.is-in .why-map-route { animation: why-map-route 5.5s ease-in-out infinite; }
+@keyframes why-draw-check { 0%, 12% { stroke-dashoffset: 1; } 35%, 82% { stroke-dashoffset: 0; } 96%, 100% { stroke-dashoffset: 1; } }
+@keyframes why-check-pop { 0%, 28%, 48%, 100% { transform: scale(1); } 38% { transform: scale(1.12); } }
+@keyframes why-cube-turn { 0%, 12%, 85%, 100% { transform: translateY(0) rotateY(0deg); } 38% { transform: translateY(-2px) rotateY(180deg); } 65% { transform: translateY(0) rotateY(360deg); } }
+@keyframes why-ar-scan { 0%, 12%, 85%, 100% { opacity: .5; transform: scale(.94); } 35%, 65% { opacity: 1; transform: scale(1.08); } }
+@keyframes why-unfold-left { 0%, 10%, 100% { transform: skewY(12deg) scaleX(.12); opacity: .35; } 32%, 82% { transform: skewY(0) scaleX(1); opacity: 1; } }
+@keyframes why-unfold-right { 0%, 17%, 100% { transform: skewY(-12deg) scaleX(.12); opacity: .35; } 40%, 82% { transform: skewY(0) scaleX(1); opacity: 1; } }
+@keyframes why-map-route { 0%, 35%, 100% { opacity: 0; } 48%, 80% { opacity: 1; } }
+@media(prefers-reduced-motion: reduce) { .why-tile.is-in .why-motion svg, .why-tile.is-in .why-motion svg * { animation: none; transform: none; } }
+
+/* One introduction per page visit, triggered by the existing scroll reveal. */
+.why-check-ring { transform: rotate(-90deg); transform-origin: 16px 16px; stroke-dasharray: 1; }
+.why-tile.is-in .why-check-ring { animation: why-ring-once 1.8s ease both; }
+.why-tile.is-in .why-checkmark { animation: why-tick-once 1.8s ease both; }
+.why-tile.is-in .why-check { animation: why-confirm-once 1.8s ease both; }
+.why-tile.is-in .why-ar-cube { animation: why-object-once 2.2s ease both; }
+.why-tile.is-in .why-ar-corners { animation: why-capture-once 2.2s ease both; }
+.why-tile.is-in .why-ar-flash { animation: why-flash-once 2.2s ease both; }
+.why-tile.is-in .why-map-left { animation: why-map-left-once 1.8s ease both; }
+.why-tile.is-in .why-map-right { animation: why-map-right-once 1.8s ease both; }
+.why-tile.is-in .why-map-route { animation: why-route-once 1.8s ease both; }
+@keyframes why-ring-once { 0% { stroke-dashoffset: 1; } 55%, 100% { stroke-dashoffset: 0; } }
+@keyframes why-tick-once { 0%, 55% { stroke-dashoffset: 1; } 85%, 100% { stroke-dashoffset: 0; } }
+@keyframes why-confirm-once { 0%, 75%, 100% { transform: scale(1); } 88% { transform: scale(1.1); } }
+@keyframes why-object-once { 0% { opacity: 0; transform: translateY(5px) scale(.55) rotateY(-65deg); } 40% { opacity: 1; transform: translateY(-1px) scale(1.05) rotateY(15deg); } 65%, 100% { opacity: 1; transform: none; } }
+@keyframes why-capture-once { 0%, 30% { opacity: 0; transform: scale(1.3); } 55% { opacity: 1; transform: scale(1); } 70% { transform: scale(.86); } 85%, 100% { opacity: 1; transform: scale(1); } }
+@keyframes why-flash-once { 0%, 65%, 90%, 100% { opacity: 0; } 73% { opacity: .3; } }
+@keyframes why-map-left-once { 0%, 10% { transform: skewY(18deg) scaleX(.02); opacity: 0; } 60%, 100% { transform: none; opacity: 1; } }
+@keyframes why-map-right-once { 0%, 25% { transform: skewY(-18deg) scaleX(.02); opacity: 0; } 75%, 100% { transform: none; opacity: 1; } }
+@keyframes why-route-once { 0%, 70% { opacity: 0; } 100% { opacity: 1; } }
+@media(prefers-reduced-motion: reduce) { .why-tile.is-in .why-motion svg, .why-tile.is-in .why-motion svg * { animation: none; transform: none; } }
+
+.why-motion > span { display: flex; align-items: center; justify-content: center; }
+.why-tile.is-in .why-motion-stopped svg,
+.why-tile.is-in .why-motion-stopped svg * { animation: none; transform: none; }
+
+/* A coral display stage for the app, with quiet wayfinding details. */
+.demo-stage {
+  isolation: isolate;
+  border: 1px solid var(--brand-soft-strong);
+  background:
+    radial-gradient(ellipse at 50% 38%, var(--surface) 0%, transparent 62%),
+    radial-gradient(ellipse at 95% 5%, var(--brand-soft-strong), transparent 60%),
+    linear-gradient(145deg, var(--surface-2), var(--coral-soft));
+}
+.demo-stage::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 450px;
+  height: 450px;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%) rotate(-24deg);
+  border: 1px solid color-mix(in srgb, var(--coral) 18%, transparent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 48px color-mix(in srgb, var(--coral) 4%, transparent), 0 0 0 96px color-mix(in srgb, var(--coral) 3%, transparent);
+}
+.demo-stage::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 13% -18% 14% -18%;
+  border: 2px dashed color-mix(in srgb, var(--coral) 21%, transparent);
+  border-radius: 50%;
+  transform: rotate(-35deg);
+  pointer-events: none;
+}
+.demo-stage .demo-glow {
+  inset: auto 18% 3%;
+  height: 60px;
+  background: radial-gradient(ellipse, color-mix(in srgb, var(--coral) 25%, transparent), transparent 70%);
+  filter: blur(14px);
+}
+.demo-phones { z-index: 1; }
+
+/* Keep the preview backdrop quiet and focused on the app. */
+.demo-stage { background: linear-gradient(145deg, var(--surface), var(--coral-soft)); border-color: var(--line); }
+.demo-stage::before, .demo-stage::after { content: none; }
+.demo-stage .demo-glow { display: none; }
+
+/* A single soft coral form adds depth without decorative clutter. */
+.demo-stage {
+  background: linear-gradient(150deg, var(--surface) 5%, color-mix(in srgb, var(--coral) 9%, var(--surface)) 100%);
+}
+.demo-stage::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 82%;
+  height: 76%;
+  top: 13%;
+  left: 50%;
+  transform: translateX(-50%) rotate(-12deg);
+  border: 0;
+  border-radius: 48% 48% 35% 35%;
+  background: color-mix(in srgb, var(--coral) 10%, var(--surface));
+  box-shadow: none;
+}
+
+.demo-stage { background: color-mix(in srgb, var(--coral) 10%, var(--surface)); }
+.demo-stage::before, .demo-stage::after { content: none; }
+
+
+/* Restore the original app-preview background. */
+.demo-stage { border: 0; background: var(--stage); }
+.demo-stage::before, .demo-stage::after { content: none; }
+.demo-stage .demo-glow {
+  display: block;
+  inset: 12% 18%;
+  height: auto;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--coral-soft), transparent);
+  filter: blur(10px);
+}
+
+
+.download-details { margin-top: 24px; color: var(--ink-2); font-size: 12px; }
+.download-details summary { cursor: pointer; padding: 8px 0; font-weight: 600; }
+.download-details summary:hover { color: var(--coral-text); }
+.download-details .checksum { margin-top: 10px; }
+
+/* Responsive refinements for phones and portrait tablets. */
+.travel-hero-inner > *, .demo-grid > *, .ar-grid > *, .install-grid > *, .footer-inner > * { min-width: 0; }
+.footer-email, .legal-content, .checksum code { overflow-wrap: anywhere; }
+@media (min-width: 901px) and (max-width: 1100px) {
+  .nav-inner { gap: 12px; padding-inline: 14px; }
+  .nav-links { gap: 12px; }
+  .nav-links a { font-size: 11px; }
+  .nav-actions { gap: 8px; }
+  .nav-cta { padding-inline: 13px; font-size: 12px; }
+  .travel-hero-inner { gap: 24px; }
+  .travel-copy h1.travel-app-title { font-size: 60px; }
+  .travel-visual { height: 440px; }
+  .travel-main-photo { height: 395px; }
+}
+@media (min-width: 601px) and (max-width: 900px) {
+  .section { padding-top: 65px; padding-bottom: 65px; }
+  .why-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .why-tile { padding: 18px 12px; }
+  .demo-grid { gap: 30px; }
+  .demo-stage { padding-block: 32px; }
+  .demo-tabs { display: grid; grid-template-columns: 1fr 1fr; }
+  .demo-tab { padding: 18px; gap: 12px; }
+  .footer-inner { gap: 24px; }
+}
+@media (max-width: 600px) {
+  .nav-inner { height: 66px; gap: 10px; padding-inline: 12px; }
+  .nav-actions { gap: 6px; }
+  .nav-brand { gap: 7px; font-size: 21px; }
+  .nav-brand img { width: 26px; height: auto; }
+  .travel-actions { flex-wrap: wrap; }
+  .travel-eyebrow { font-size: 9px; letter-spacing: 1.3px; }
+  .travel-visual { height: 370px; }
+  .travel-main-photo { height: 340px; }
+  .travel-small-photo { height: 190px; }
+  .travel-location { bottom: 20px; padding: 10px 12px; }
+  .travel-stamp { top: 14px; padding: 10px; }
+  .travel-spark { font-size: 48px; }
+  .section { padding-block: 56px; }
+  .section-head { margin-bottom: 30px; }
+  .section-title { font-size: clamp(30px, 8vw, 40px); }
+  .demo-stage { padding: 28px 16px; border-radius: 25px; }
+  .demo-tab { padding: 16px; border-radius: 16px; }
+  .demo-tab-text strong { font-size: 16px; }
+  .demo-tab-text span { font-size: 13px; }
+  .why-grid { gap: 6px; }
+  .why-tile { padding: 18px 8px; }
+  .footer-inner { gap: 28px 18px; }
+  .footer-brand, .footer-col:has(.footer-email) { grid-column: 1 / -1; }
+  .footer-base { flex-wrap: wrap; gap: 10px; padding-bottom: 85px; }
+  .tile-band .btn-outline { white-space: normal; }
+  .cookie-banner { max-height: 70dvh; overflow-y: auto; z-index: 160; }
+}
+@media (max-width: 360px) {
+  .travel-copy h1.travel-app-title { font-size: 43px; }
+  .travel-visual { height: 330px; }.travel-main-photo { height: 300px; }.travel-small-photo { height: 165px; }
+  .travel-stamp { font-size: 9px; }.travel-location strong { font-size: 10px; }
+  .theme-toggle-btn { padding-inline: 7px; }
+}

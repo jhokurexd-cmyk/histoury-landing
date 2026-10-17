@@ -1,6 +1,6 @@
 import DownloadButton from "../components/DownloadButton";
 import { Icon } from "../components/Icon";
-import { RELEASE, REQUIREMENTS, formatReleaseDate } from "../config/download";
+import { DOWNLOAD_QR_SVG, RELEASE, REQUIREMENTS, formatReleaseDate } from "../config/download";
 import histouryMark from "../assets/histoury-mark.png";
 
 // Sideloading is the one genuinely unfamiliar thing this page asks of a
@@ -45,6 +45,22 @@ function Install() {
           </div>
 
           <DownloadButton className="install-dl" />
+          {/* For people reading this on a computer. The SVG is drawn at build
+              time from RELEASE.url (vite.config.js), not typed in by hand. */}
+          {DOWNLOAD_QR_SVG && (
+            <div className="install-qr">
+              <div
+                className="install-qr-code"
+                role="img"
+                aria-label="QR code linking to the Histoury APK download"
+                dangerouslySetInnerHTML={{ __html: DOWNLOAD_QR_SVG }}
+              />
+              <p>
+                <strong>On a computer?</strong>
+                Scan with your phone&rsquo;s camera to download it there.
+              </p>
+            </div>
+          )}
 
           <ul className="req-list">
             {REQUIREMENTS.map((req) => (
@@ -59,13 +75,16 @@ function Install() {
               presented as a checksum is worse than no checksum, because it
               invites someone to "verify" against a value that means nothing. */}
           {RELEASE.sha256 !== "REPLACE_WITH_RELEASE_SHA256" && (
-            <div className="checksum">
+            <details className="download-details">
+              <summary>Download details</summary>
+              <div className="checksum">
               <span className="checksum-label">
                 <Icon name="lock" size={13} />
                 SHA-256
               </span>
               <code>{RELEASE.sha256}</code>
-            </div>
+              </div>
+            </details>
           )}
         </div>
 

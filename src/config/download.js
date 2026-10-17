@@ -63,3 +63,9 @@ export function formatReleaseDate(iso) {
     day: "numeric",
   });
 }
+
+// The download URL as a QR code (an SVG string), drawn by vite.config.js at
+// build time, or null when the APK is served from this site. Shown beside
+// the button for people reading the page on a computer.
+// eslint-disable-next-line no-undef
+export const DOWNLOAD_QR_SVG = typeof __DOWNLOAD_QR_SVG__ !== "undefined" ? __DOWNLOAD_QR_SVG__ : null;

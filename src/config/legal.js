@@ -52,7 +52,7 @@ export const LEGAL_PAGES = {
         heading: "Your choices",
         body: [
           "You can change your name and profile photo in the app at any time, and turn location, camera and notification permissions on or off in your phone's settings.",
-          `To have your account and its data deleted, email us at ${CONTACT.email}.`,
+          `To have your account and its data deleted, email us at ${CONTACT.email} or ${CONTACT.alternateEmail}.`,
         ],
       },
       {
@@ -123,7 +123,7 @@ export const LEGAL_PAGES = {
       },
       {
         heading: "Contact",
-        body: [`Questions about these terms: ${CONTACT.email}.`],
+        body: [`Questions about these terms: ${CONTACT.email} or ${CONTACT.alternateEmail}.`],
       },
     ],
   },
@@ -165,9 +165,10 @@ export const LEGAL_PAGES = {
         body: [
           "You can change your choice at any time with \"Cookie Settings\" at the bottom of every page.",
           "You can also delete or block cookies in your browser's settings. Blocking essential storage means the site may forget your theme and ask about cookies again.",
-          `Questions? Contact us at ${CONTACT.email}.`,
+          `Questions? Contact us at ${CONTACT.email} or ${CONTACT.alternateEmail}.`,
         ],
       },
     ],
   },
 };
+

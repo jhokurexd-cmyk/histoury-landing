@@ -41,6 +41,10 @@ function Footer() {
             <Icon name="mail" size={16} aria-hidden="true" />
             {CONTACT.email}
           </a>
+          <a className="footer-email" href={`mailto:${CONTACT.alternateEmail}`}>
+            <Icon name="mail" size={16} aria-hidden="true" />
+            {CONTACT.alternateEmail}
+          </a>
         </div>
 
         <nav className="footer-col" aria-label="Legal">
