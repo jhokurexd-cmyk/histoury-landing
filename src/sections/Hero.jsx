@@ -25,8 +25,13 @@ function Hero() {
           <span className="travel-spark" aria-hidden="true">✳</span>
         </div>
       </div>
-      <a className="travel-explore-bar" href="#demo"><span><Icon name="map-pin" size={21} /><span><small>EXPLORE INTRAMUROS</small><strong>Find your next stop</strong></span></span><span><Icon name="headphones" size={21} /><span><small>YOUR OWN PACE</small><strong>Walk. Listen. Discover.</strong></span></span><span><Icon name="cube" size={21} /><span><small>A DIFFERENT PERSPECTIVE</small><strong>History, brought to life</strong></span></span><span className="travel-bar-arrow"><Icon name="arrow-right" size={22} /></span></a>
+      <ul className="hero-highlights" aria-label="Explore with Histoury">
+        <li><span className="hero-highlight-icon"><Icon name="map-pin" size={21} /></span><div><strong>Find your next stop</strong><span>Heritage sites, mapped out.</span></div></li>
+        <li><span className="hero-highlight-icon"><Icon name="headphones" size={21} /></span><div><strong>Walk. Listen. Discover.</strong><span>Stories at your own pace.</span></div></li>
+        <li><span className="hero-highlight-icon"><Icon name="cube" size={21} /></span><div><strong>See the past come alive</strong><span>History through augmented reality.</span></div></li>
+      </ul>
     </section>
   );
 }
 export default Hero;
+

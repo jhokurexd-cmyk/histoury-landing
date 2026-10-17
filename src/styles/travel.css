@@ -277,3 +277,10 @@
   .travel-stamp { font-size: 9px; }.travel-location strong { font-size: 10px; }
   .theme-toggle-btn { padding-inline: 7px; }
 }
+
+.hero-highlights { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 1000px; margin: 48px auto 0; padding: 28px 0 0; border-top: 1px solid var(--line); list-style: none; gap: 32px; }
+.hero-highlights li { display: flex; align-items: center; gap: 13px; min-width: 0; }
+.hero-highlight-icon { display: grid; place-items: center; width: 43px; height: 43px; flex-shrink: 0; color: var(--coral); border-radius: 13px; background: var(--coral-soft); }
+.hero-highlights strong { display: block; font-size: 13px; font-weight: 600; color: var(--ink); }
+.hero-highlights li div > span { display: block; font-size: 11px; margin-top: 4px; line-height: 1.6; color: var(--ink-2); }
+@media(max-width: 700px) { .hero-highlights { gap: 22px; grid-template-columns: 1fr; margin-top: 30px; padding-top: 24px; }.hero-highlights li { gap: 14px; }.hero-highlights strong { font-size: 14px; }.hero-highlights li div > span { font-size: 12px; } }
