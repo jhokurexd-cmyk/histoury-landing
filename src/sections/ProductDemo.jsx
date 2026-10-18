@@ -106,6 +106,8 @@ function ProductDemo() {
           ))}
         </div>
 
+        <p className="demo-mobile-description" aria-live="polite">{SCREENS[active].body}</p>
+
         <div
           className="demo-stage"
           id="demo-panel"

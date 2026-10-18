@@ -6,6 +6,7 @@ import { createRoot } from "react-dom/client";
 import "./styles/shared.css";
 import "./styles/landing.css";
 import "./styles/travel.css";
+import "./styles/motion.css";
 import App from "./App.jsx";
 import { ThemeProvider } from "./context/ThemeContext.jsx";
 

@@ -54,13 +54,36 @@ const STEPS = [
 function Steps() {
   const [active, setActive] = useState(0);
   const stepRefs = useRef([]);
+  const mobileRef = useRef(null);
+
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 900px)");
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      if (!query.matches || !mobileRef.current) return;
+      const element = mobileRef.current;
+      const distance = element.offsetHeight - window.innerHeight;
+      const progress = Math.max(0, Math.min(0.999, (85 - element.getBoundingClientRect().top) / Math.max(1, distance)));
+      setActive(Math.floor(progress * STEPS.length));
+    };
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    update();
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
+  }, []);
 
   useEffect(() => {
     if (!("IntersectionObserver" in window)) return undefined;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(Number(entry.target.dataset.index));
+          if (entry.isIntersecting && !window.matchMedia("(max-width: 900px)").matches) setActive(Number(entry.target.dataset.index));
         });
       },
       { rootMargin: "-45% 0px -45% 0px" },
@@ -71,7 +94,7 @@ function Steps() {
 
   return (
     <section className="section steps" id="how">
-      <header className="section-head" data-reveal>
+      <header className="section-head steps-desktop-heading" data-reveal>
         <p className="kicker">How it works</p>
         <h2 className="section-title">
           Four steps, <span className="accent">one walk.</span>
@@ -81,6 +104,27 @@ function Steps() {
           centuries under your feet.
         </p>
       </header>
+
+      <div className="mobile-walk" ref={mobileRef}>
+        <div className="mobile-walk-sticky">
+          <header className="section-head mobile-walk-heading">
+            <p className="kicker">How it works</p>
+            <h2 className="section-title">Four steps, <span className="accent">one walk.</span></h2>
+            <p className="section-sub">The same arc at every site, from the map in your hand to the centuries under your feet.</p>
+          </header>
+          <div className="mobile-walk-card" aria-label={STEPS[active].alt}>
+            {STEPS.map((step, index) => (
+              <Device key={step.kicker} src={step.shot} className={`mobile-walk-phone${active === index ? " is-active" : ""}`} />
+            ))}
+            <span className="mobile-walk-count">{active + 1} / {STEPS.length}</span>
+          </div>
+          <div className="mobile-walk-copy" key={active}>
+            <p className="step-kicker"><span className="step-num">{String(active + 1).padStart(2, "0")}</span>{STEPS[active].kicker}</p>
+            <h3>{STEPS[active].title}</h3>
+            <p>{STEPS[active].body}</p>
+          </div>
+        </div>
+      </div>
 
       <div className="steps-grid">
         <ol className="steps-list">

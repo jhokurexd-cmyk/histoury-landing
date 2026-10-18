@@ -17,7 +17,7 @@ function Footer() {
           <p>Preserve, explore, experience. A heritage guide to Intramuros for Android.</p>
         </div>
 
-        <nav className="footer-col" aria-label="Footer">
+        <nav className="footer-col footer-explore" aria-label="Footer">
           <h2>Explore</h2>
           {NAV_LINKS.map((link) => (
             <a key={link.href} href={link.href}>
@@ -26,7 +26,7 @@ function Footer() {
           ))}
         </nav>
 
-        <div className="footer-col">
+        <div className="footer-col footer-connect">
           <h2>Connect</h2>
           {socials.length > 0 && (
             <div className="footer-social">
@@ -47,7 +47,7 @@ function Footer() {
           </a>
         </div>
 
-        <nav className="footer-col" aria-label="Legal">
+        <nav className="footer-col footer-legal" aria-label="Legal">
           <h2>Legal</h2>
           {LEGAL_LINKS.map((link) => (
             <a key={link.href} href={link.href}>

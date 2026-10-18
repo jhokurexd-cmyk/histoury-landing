@@ -1,0 +1,71 @@
+/* Motion direction inspired by the CoreShift reference: stagger, drift, settle. */
+@keyframes histoury-enter {
+  from { opacity: 0; transform: translateY(22px); filter: blur(5px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+@keyframes histoury-photo-main {
+  from { opacity: 0; transform: translateY(38px) rotate(-12deg) scale(.94); }
+  to { opacity: 1; transform: translateY(0) rotate(-7deg) scale(1); }
+}
+@keyframes histoury-photo-small {
+  from { opacity: 0; transform: translateY(45px) rotate(16deg) scale(.9); }
+  to { opacity: 1; transform: translateY(0) rotate(10deg) scale(1); }
+}
+@keyframes histoury-drift {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -7px; }
+}
+@keyframes histoury-stamp-in {
+  from { opacity: 0; scale: .86; }
+  to { opacity: 1; scale: 1; }
+}
+.travel-eyebrow { animation: histoury-enter .75s var(--ease-out) both; }
+.travel-app-title { animation: histoury-enter .95s var(--ease-out) .1s both; }
+.travel-intro { animation: histoury-enter .85s var(--ease-out) .22s both; }
+.travel-actions { animation: histoury-enter .85s var(--ease-out) .32s both; }
+.travel-footnote { animation: histoury-enter .75s var(--ease-out) .42s both; }
+.travel-main-photo { animation: histoury-photo-main 1.2s var(--ease-out) .12s both, histoury-drift 7s ease-in-out 1.4s infinite; }
+.travel-small-photo { animation: histoury-photo-small 1.2s var(--ease-out) .3s both, histoury-drift 8s ease-in-out 2s infinite reverse; }
+.travel-location { animation: histoury-stamp-in .8s var(--ease-out) .6s both, histoury-drift 6s ease-in-out 1.6s infinite; }
+.travel-stamp { animation: histoury-stamp-in .8s var(--ease-out) .75s both, histoury-drift 7s ease-in-out 2.1s infinite reverse; }
+.travel-spark { animation: histoury-stamp-in .9s var(--ease-out) .85s both; }
+.hero-highlights li { animation: histoury-enter .8s var(--ease-out) .45s both; }
+.hero-highlights li:nth-child(2) { animation-delay: .55s; }
+.hero-highlights li:nth-child(3) { animation-delay: .65s; }
+.hero-highlight-icon { transition: transform .35s var(--ease-out), background .3s; }
+.hero-highlights li:hover .hero-highlight-icon { transform: translateY(-3px) rotate(-5deg); background: var(--brand-soft-strong); }
+.demo-device { transition: opacity .45s ease, transform .7s var(--ease-out); transform: translateY(20px) scale(.96) rotate(2deg); }
+.demo-device.is-active { transform: translateY(0) scale(1) rotate(0); }
+.demo-tab { transition: border-color .25s ease, background .25s ease, box-shadow .3s ease, transform .35s var(--ease-out); }
+@media(hover: hover) and (pointer: fine) {
+  .demo-tab:hover { transform: translateX(5px); }
+  .arch-item { transition: transform .4s var(--ease-out), box-shadow .4s ease; }
+  .arch-item:hover { transform: translateY(-5px); box-shadow: var(--shadow-card); }
+  .travel-actions .btn-primary svg { transition: transform .3s var(--ease-out); }
+  .travel-actions .btn-primary:hover svg { transform: translateX(4px); }
+}
+@media(max-width: 600px) {
+  .travel-main-photo { animation-name: histoury-photo-main; animation-iteration-count: 1; }
+  .travel-small-photo { animation-name: histoury-photo-small; animation-iteration-count: 1; }
+  .travel-location, .travel-stamp { animation-name: histoury-stamp-in; animation-iteration-count: 1; }
+}
+@media(prefers-reduced-motion: reduce) {
+  .travel-hero *, .demo-device, .demo-tab, .arch-item { animation: none !important; transition: none !important; translate: none !important; filter: none !important; }
+}
+
+/* Short, crisp motion on touch screens; leave content readable immediately. */
+@media(max-width: 600px) {
+  .travel-eyebrow, .travel-app-title, .travel-intro, .travel-actions, .travel-footnote, .hero-highlights li { animation-duration: .55s; animation-delay: 0s; }
+  .travel-main-photo, .travel-small-photo { animation-duration: .75s; animation-delay: .05s; }
+  .travel-location, .travel-stamp, .travel-spark { animation-duration: .5s; animation-delay: .2s; }
+  .demo-device { transform: translateY(9px) scale(.985); transition: opacity .25s ease, transform .4s var(--ease-out); }
+  .demo-device.is-active { transform: none; }
+  [data-reveal] { transition-duration: .5s; transition-delay: 0s; }
+  .reveal-ready [data-reveal]:not(.is-in) { transform: translateY(12px); }
+}
+
+@media(max-width:600px) and (prefers-reduced-motion:no-preference) {
+  .travel-main-photo, .travel-small-photo { animation: histoury-mobile-photo .65s var(--ease-out) both; }
+  .travel-small-photo { animation-delay: .1s; }
+  .travel-location { animation: histoury-mobile-photo .55s var(--ease-out) .2s both; }
+}
