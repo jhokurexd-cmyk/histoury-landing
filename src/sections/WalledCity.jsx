@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import manilaCathedral from "../assets/photos/manila-cathedral.webp";
 import fortSantiago from "../assets/photos/fort-santiago.jpg";
 import sanAgustin from "../assets/photos/san-agustin.jpg";
@@ -20,8 +21,53 @@ const PLACES = [
  * strip on phones.
  */
 function WalledCity() {
+  const journeyRef = useRef(null);
+  const stickyRef = useRef(null);
+  const cardsRef = useRef(null);
+
+  useEffect(() => {
+    const journey = journeyRef.current;
+    const sticky = stickyRef.current;
+    const cards = cardsRef.current;
+    const mobile = window.matchMedia("(max-width: 900px)");
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let frame = 0;
+    let distance = 0;
+    const update = () => {
+      frame = 0;
+      if (!mobile.matches || reduced.matches) return;
+      const progress = Math.max(0, Math.min(1, (82 - journey.getBoundingClientRect().top) / Math.max(1, distance)));
+      cards.scrollLeft = progress * distance;
+    };
+    const measure = () => {
+      distance = Math.max(0, cards.scrollWidth - cards.clientWidth);
+      const enabled = mobile.matches && !reduced.matches && distance > 0 && sticky.offsetHeight < window.innerHeight - 90;
+      journey.classList.toggle("is-scroll-journey", enabled);
+      journey.style.height = enabled ? `${sticky.offsetHeight + distance}px` : "";
+      if (!enabled) distance = 0;
+      else update();
+    };
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+    const observer = new ResizeObserver(measure);
+    observer.observe(sticky);
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", measure);
+    mobile.addEventListener("change", measure);
+    reduced.addEventListener("change", measure);
+    measure();
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", measure);
+      mobile.removeEventListener("change", measure);
+      reduced.removeEventListener("change", measure);
+    };
+  }, []);
   return (
     <section className="section walled" id="about">
+      <div className="sites-journey" ref={journeyRef}>
+      <div className="sites-sticky" ref={stickyRef}>
       <header className="section-head split" data-reveal>
         <div>
           <p className="kicker">Made for Intramuros</p>
@@ -36,9 +82,9 @@ function WalledCity() {
         </p>
       </header>
 
-      <ul className="arches">
+      <ul className="arches" ref={cardsRef} aria-label="Historical sites in Intramuros" tabIndex={0}>
         {PLACES.map((place, index) => (
-          <li key={place.name} className="arch-item" data-reveal style={{ "--i": index }}>
+          <li key={place.name} className="arch-item">
             <figure>
               <div className="arch">
                 <img src={place.src} alt={place.name} loading="lazy" decoding="async" width="1400" height="1050" />
@@ -51,6 +97,8 @@ function WalledCity() {
           </li>
         ))}
       </ul>
+      </div>
+      </div>
 
       <details className="credit">
         <summary>Photo credits · Wikimedia Commons</summary>

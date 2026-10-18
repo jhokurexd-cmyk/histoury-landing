@@ -37,7 +37,11 @@ export default function Chatbot() {
     };
   }, [open]);
   useEffect(() => { if (scroll.current) scroll.current.scrollTop = scroll.current.scrollHeight; }, [messages, typing, open, topics]);
-  useEffect(() => { if (open) field.current?.focus(); }, [open]);
+  useEffect(() => {
+    if (!open) return;
+    // Don't open the phone keyboard before visitors choose a quick question.
+    if (!window.matchMedia("(max-width: 600px)").matches) field.current?.focus();
+  }, [open]);
 
   const close = () => { setOpen(false); launcher.current?.focus(); };
   const ask = (value) => {
@@ -56,7 +60,7 @@ export default function Chatbot() {
   };
 
   return (
-    <div className="histoury-chat">
+    <div className={`histoury-chat${open ? " is-open" : ""}`}>
       {open && <section className="chat-panel" role="dialog" aria-label="Histoury FAQ assistant" onKeyDown={(event) => { if (event.key === "Escape") close(); }}>
         <header className="chat-header">
           <span className="chat-avatar"><Icon name="message" size={22} /></span>

@@ -487,3 +487,12 @@
   .footer-connect .footer-email { font-size: 12px; min-height: 36px; }
   .footer-base { font-size: 11px; line-height: 1.7; padding-top: 18px; }
 }
+
+/* Vertical scrolling reveals the full mobile landmark strip before continuing. */
+@media(max-width:900px) {
+  .sites-journey.is-scroll-journey .sites-sticky { position: sticky; top: 82px; }
+  .sites-journey.is-scroll-journey .arches { scroll-snap-type: none; scroll-behavior: auto; }
+  .sites-sticky .section-head { margin-bottom: 22px; }
+  .sites-sticky .arch-item { flex: 0 0 min(74vw, 300px); }
+  .sites-sticky .arch-item:nth-child(n) .arch { aspect-ratio: 4 / 3; }
+}

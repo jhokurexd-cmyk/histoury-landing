@@ -45,3 +45,38 @@
   .chat-tools > span { font-size: 8px; }
 }
 @media(max-height: 500px) { .chat-panel { height: calc(var(--chat-viewport-height, 100dvh) - 84px); }.chat-note { display: none; }.chat-header { padding: 8px 12px; } }
+
+/* Mobile chat is a fitted sheet, with one close control and a fixed composer. */
+@media(max-width:600px) {
+  .histoury-chat { right: 14px; }
+  .histoury-chat.is-open .chat-launcher { display: none; }
+  .histoury-chat.is-open .chat-panel {
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    bottom: calc(10px + env(safe-area-inset-bottom) + var(--chat-keyboard-offset, 0px));
+    width: auto;
+    max-width: none;
+    height: min(620px, calc(var(--chat-viewport-height, 100dvh) - 30px - env(safe-area-inset-top) - env(safe-area-inset-bottom)));
+    margin: 0;
+    border-radius: 20px;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto auto;
+  }
+  .chat-header { padding: 12px 14px; gap: 10px; }
+  .chat-avatar { width: 36px; height: 36px; border-radius: 11px; flex-shrink: 0; }
+  .chat-header strong { font-size: 14px; }
+  .chat-thread { padding: 14px; min-height: 0; -webkit-overflow-scrolling: touch; }
+  .chat-note { font-size: 10px; margin-bottom: 14px; }
+  .chat-message { max-width: 94%; padding: 11px 13px; font-size: 13px; line-height: 1.65; margin-bottom: 12px; }
+  .chat-suggestions { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 7px; }
+  .chat-suggestions button { justify-content: center; text-align: center; font-size: 11px; min-height: 42px; padding: 8px; line-height: 1.4; }
+  .chat-tools { padding: 4px 14px; gap: 8px; }
+  .chat-tools > span { font-size: 9px; text-align: right; }
+  .chat-tools button { font-size: 11px; min-height: 40px; }
+  .chat-form { padding: 0 12px 12px; grid-template-columns: minmax(0,1fr) 46px; }
+  .chat-form input { height: 46px; font-size: 16px; padding: 11px 12px; }
+  .chat-answer-link { min-height: 36px; font-size: 12px; }
+  .chat-email { min-height: 42px; }
+  .chat-support small, .chat-support > a:last-child:not(.chat-email) { font-size: 11px; overflow-wrap: anywhere; }
+}
