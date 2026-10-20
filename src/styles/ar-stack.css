@@ -1,0 +1,94 @@
+.ar-stack-journey { position: relative; height: 240svh; }
+.ar-stack-sticky { position: sticky; top: 100px; min-height: min(650px, calc(100svh - 120px)); }
+.ar-stack-visual { min-width: 0; }
+.ar-stack-deck { position: relative; height: clamp(330px, 37vw, 480px); perspective: 1100px; }
+.ar-stack-phone { position: absolute; width: 43%; aspect-ratio: 350 / 744; top: 0; left: 28.5%; border-radius: 18% / 8.5%; overflow: hidden; transform-origin: center; transition: transform .8s cubic-bezier(.22,.8,.25,1), opacity .6s; box-shadow: 0 15px 22px -15px #0007; background: #141414; }
+.ar-stack-phone img { position: absolute; width: 116%; height: auto; max-width: none; left: -7%; top: -2.3%; }
+.ar-stack-source-1 img { width: 111.5%; left: -5.7%; top: -1.1%; }
+.ar-stack-source-2 img { width: 116%; left: -6.8%; top: -1.5%; }
+.ar-stack-position-0 { z-index: 3; transform: translate3d(0,25px,55px) scale(1); }
+.ar-stack-position-1 { z-index: 1; transform: translate3d(66%,-5px,-60px) scale(.94); }
+.ar-stack-position-2 { z-index: 2; transform: translate3d(-66%,-5px,-60px) scale(.94); }
+.ar-stack-pagination { display: flex; justify-content: center; gap: 2px; margin-top: 18px; }
+.ar-stack-pagination button { display: grid; place-items: center; width: 38px; height: 36px; padding: 0; background: transparent; border: 0; }
+.ar-stack-pagination span { width: 6px; height: 6px; border-radius: 9px; background: var(--line-strong); transition: width .3s, background .3s; }
+.ar-stack-pagination button[aria-pressed="true"] span { width: 22px; background: var(--coral); }
+.ar-stack-name { text-align: center; font-size: 13px; font-weight: 600; color: var(--ink); }
+.ar-stack-scroll { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 10px; color: var(--ink-2); margin-top: 7px; }
+@media(max-width:900px) {
+  .ar-stack-journey { height: 260svh; }
+  .ar-stack-sticky { top: 78px; gap: 20px; }
+  .ar-stack-sticky .ar-points { display: none; }
+  .ar-stack-sticky .ar-note { margin-top: 12px; font-size: 11px; }
+  .ar-stack-sticky .section-title { font-size: 32px; margin-top: 10px; }
+  .ar-stack-sticky .section-sub { font-size: 13px; margin-top: 12px; }
+  .ar-stack-visual { width: min(100%, 430px); margin-inline: auto; }
+  .ar-stack-deck { height: clamp(260px, 41svh, 395px); }
+  .ar-stack-phone { width: min(43%, calc(36svh / 2.125)); left: calc(50% - min(21.5%, calc(18svh / 2.125))); }
+  .ar-stack-pagination { margin-top: 4px; }
+}
+@media(max-height:650px) and (min-width:901px) { .ar-stack-sticky { top: 85px; }.ar-stack-deck { height: 340px; }.ar-stack-phone { width: 33%; left: 33.5%; } }
+@media(prefers-reduced-motion:reduce) { .ar-stack-journey { height: auto; }.ar-stack-sticky { position: static; }.ar-stack-phone, .ar-stack-pagination span { transition: none; }.ar-stack-scroll { display: none; } }
+
+/* Match the supplied stack: front handset higher, rear handsets smaller and lower. */
+.ar-stack-deck { height: clamp(340px, 35vw, 460px); }
+.ar-stack-phone { width: 37%; left: 31.5%; }
+.ar-stack-position-0 { z-index: 3; transform: translate3d(0,0,0) scale(1); }
+.ar-stack-position-1 { z-index: 2; transform: translate3d(-65%,25px,0) scale(.86); }
+.ar-stack-position-2 { z-index: 1; transform: translate3d(65%,25px,0) scale(.86); }
+@media(max-width:900px) {
+  .ar-stack-deck { height: clamp(255px, 40svh, 375px); }
+  .ar-stack-phone { width: min(37%, calc(36svh / 2.125)); left: calc(50% - min(18.5%, calc(18svh / 2.125))); }
+  .ar-stack-position-1 { transform: translate3d(-65%,18px,0) scale(.86); }
+  .ar-stack-position-2 { transform: translate3d(65%,18px,0) scale(.86); }
+}
+
+/* Scale rear cards from their top edge so their bottoms sit above the front card. */
+.ar-stack-phone { transform-origin: top center; }
+.ar-stack-position-0 { transform: translate3d(0,0,0) scale(1); }
+.ar-stack-position-1 { transform: translate3d(-65%,22px,0) scale(.86); }
+.ar-stack-position-2 { transform: translate3d(65%,22px,0) scale(.86); }
+@media(max-width:900px) {
+  .ar-stack-position-1 { transform: translate3d(-65%,16px,0) scale(.86); }
+  .ar-stack-position-2 { transform: translate3d(65%,16px,0) scale(.86); }
+}
+
+/* Positions follow a continuous elliptical path; depth controls overlap. */
+.ar-stack-phone.ar-stack-orbit { transition: none; will-change: transform; transform-origin: top center; backface-visibility: hidden; }
+
+.ar-stack-journey { height: auto; }
+.ar-stack-sticky { position: relative; top: auto; min-height: 0; }
+.ar-stack-pagination { align-items: center; gap: 8px; height: 30px; }
+.ar-orbit-dot { display: block; width: 6px; height: 6px; border-radius: 8px; background: var(--line-strong); }
+.ar-orbit-dot.is-active { width: 20px; background: var(--coral); }
+.ar-orbit-pause { display: block; margin: 6px auto 0; padding: 7px 10px; background: transparent; color: var(--ink-2); font-size: 10px; }
+.ar-orbit-pause:hover { background: var(--coral-soft); }
+@media(prefers-reduced-motion:reduce) { .ar-orbit-pause { display: none; } }
+
+/* Scroll remains the sole driver of the reversible rightward orbit. */
+.ar-stack-journey { height: 240svh; }
+.ar-stack-sticky { position: sticky; top: 100px; min-height: min(650px, calc(100svh - 120px)); }
+@media(max-width:900px) { .ar-stack-journey { height: 260svh; }.ar-stack-sticky { top: 78px; } }
+@media(prefers-reduced-motion:reduce) { .ar-stack-journey { height: auto; }.ar-stack-sticky { position: static; }.ar-stack-scroll { display: none; } }
+
+/* Three short scroll stages; always settle into a complete three-phone stack. */
+.ar-stack-journey { height: calc(100svh + 300px); }
+@media(max-width:900px) { .ar-stack-journey { height: calc(100svh + 330px); } }
+@media(prefers-reduced-motion:reduce) { .ar-stack-journey { height: auto; } }
+
+/* Soft backlight separates the dark handset edges from the dark page. */
+[data-theme="dark"] .ar-stack-deck { isolation: isolate; }
+[data-theme="dark"] .ar-stack-deck::before {
+  content: "";
+  position: absolute;
+  inset: 2% 0 -3%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(255, 157, 136, .19) 0%, rgba(251, 77, 76, .09) 40%, transparent 72%);
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+/* Real alpha cutouts replace the old rounded-rectangle crop. */
+.ar-stack-phone.ar-stack-orbit { background: transparent; border-radius: 0; overflow: visible; box-shadow: none; }
+.ar-stack-phone.ar-stack-orbit img { inset: 0; width: 100%; height: 100%; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 12px rgba(0,0,0,.2)); }

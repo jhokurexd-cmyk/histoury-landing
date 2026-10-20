@@ -1,0 +1,43 @@
+/* App-led hero. Scoped so the approved sections retain their design. */
+.travel-hero.hero-refined {
+  padding: 150px var(--gutter) 42px;
+  background: radial-gradient(ellipse at 78% 38%, color-mix(in srgb, var(--coral) 7%, transparent), transparent 57%), var(--paper);
+}
+.hero-refined .travel-hero-inner { max-width: 1160px; grid-template-columns: minmax(0, .95fr) minmax(0, 1.15fr); gap: 30px; align-items: center; }
+.hero-refined .travel-copy { padding-bottom: 10px; position: relative; z-index: 1; }
+.hero-refined .travel-eyebrow { font-size: 10px; letter-spacing: 1.8px; }
+.hero-refined h1.travel-app-title { font-size: clamp(68px, 6.4vw, 94px); letter-spacing: -.055em; line-height: .98; margin: 28px 0; }
+.hero-refined h1.travel-app-title > span { font-family: var(--font-accent); font-style: italic; font-weight: 400; line-height: .98; letter-spacing: -.035em; display: inline; }
+.hero-refined .travel-intro { max-width: 365px; font-size: 14px; line-height: 1.9; }
+.hero-refined .travel-actions { margin: 30px 0 18px; gap: 22px; }
+.hero-refined .travel-actions .btn-primary { padding: 16px 19px; min-height: 54px; font-size: 12px; border-radius: 12px; }
+.hero-refined .travel-watch { font-size: 11px; gap: 9px; }
+.hero-refined .travel-watch > span { width: 35px; height: 35px; }
+.hero-product { position: relative; margin: 0 -30px 0 -20px; min-width: 0; }
+.hero-product > img { display: block; width: 100%; height: auto; animation: hero-product-enter 1s var(--ease-out) .15s both; }
+.hero-product figcaption { display: flex; justify-content: center; align-items: center; gap: 7px; margin-top: 12px; font-size: 10px; color: var(--ink-2); }
+.hero-product figcaption > span { width: 5px; height: 5px; border-radius: 50%; background: var(--coral); }
+.hero-refined .hero-highlights { max-width: 1160px; margin-top: 52px; padding-top: 24px; gap: 40px; }
+@keyframes hero-product-enter { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@media(min-width:601px) and (max-width:900px) {
+  .travel-hero.hero-refined { padding-top: 125px; }
+  .hero-refined .travel-hero-inner { gap: 12px; }
+  .hero-refined h1.travel-app-title { font-size: 63px; }
+  .hero-refined .travel-actions { gap: 14px; flex-wrap: wrap; }
+  .hero-product { margin-inline: -15px; }
+}
+@media(max-width:600px) {
+  .travel-hero.hero-refined { padding: 105px var(--gutter) 24px; }
+  .hero-refined .travel-hero-inner { grid-template-columns: minmax(0,1fr); gap: 24px; }
+  .hero-refined .travel-copy { padding: 0; }
+  .hero-refined .travel-eyebrow { font-size: 9px; letter-spacing: 1.3px; }
+  .hero-refined h1.travel-app-title { font-size: clamp(57px, 15vw, 76px); margin: 22px 0; }
+  .hero-refined h1.travel-app-title > span br { display: none; }
+  .hero-refined .travel-intro { max-width: 37ch; font-size: 13px; line-height: 1.8; }
+  .hero-refined .travel-actions { margin: 24px 0 16px; gap: 16px; }
+  .hero-refined .travel-footnote { font-size: 10px; }
+  .hero-product { margin: 0 -12px; }
+  .hero-product figcaption { margin-top: 4px; font-size: 9px; }
+  .hero-refined .hero-highlights { margin-top: 28px; gap: 12px; padding-top: 20px; }
+}
+@media(prefers-reduced-motion:reduce) { .hero-product > img { animation: none; } }

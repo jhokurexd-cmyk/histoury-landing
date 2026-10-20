@@ -636,3 +636,39 @@
 .ar-original-composition { min-width: 0; width: 100%; }
 .ar-original-composition img { display: block; width: 100%; height: auto; }
 @media(max-width:900px) { .ar-original-composition { width: min(100%, 500px); margin-inline: auto; } }
+
+/* The hero demonstrates the product: present-day place, historical AR view. */
+.travel-hero { padding-top: 135px; }
+.travel-hero-inner { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 72px; }
+.travel-copy h1.travel-app-title { font-size: clamp(62px, 6.2vw, 88px); line-height: 1.03; margin-bottom: 28px; }
+.travel-intro { max-width: 410px; line-height: 1.85; }
+.hero-lens { position: relative; min-width: 0; padding-bottom: 52px; }
+.hero-lens-scene { position: relative; height: 480px; border-radius: 150px 150px 28px 28px; overflow: hidden; background: #353931; box-shadow: 0 24px 65px -35px rgba(67,35,25,.4); }
+.hero-lens-scene > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .7s ease, transform 1s var(--ease-out); }
+.hero-lens-present { object-position: 50% 50%; }
+.hero-lens-scene .hero-lens-past { opacity: 0; object-position: 50% 30%; transform: scale(1.06); }
+.showing-past .hero-lens-past { opacity: 1; transform: scale(1); }
+.hero-lens-shade { position: absolute; inset: 0; background: linear-gradient(0deg,rgba(15,22,25,.8),transparent 58%,rgba(15,22,25,.1)); }
+.hero-lens-top { position: absolute; top: 45px; left: 32px; right: 32px; display: flex; align-items: center; justify-content: space-between; color: white; }
+.hero-lens-top > span { display: inline-flex; align-items: center; gap: 7px; font-size: 9px; letter-spacing: 1.5px; padding: 7px 10px; background: #17232370; border-radius: 99px; backdrop-filter: blur(8px); }
+.hero-live-dot { width: 5px; height: 5px; border-radius: 50%; background: #ff7770; }
+.hero-lens-caption { position: absolute; bottom: 30px; left: 30px; right: 25px; color: white; }
+.hero-lens-caption > span { font-size: 8px; letter-spacing: 2px; opacity: .8; }
+.hero-lens-caption strong { display: block; font-family: var(--font-head); font-size: 27px; line-height: 1.2; letter-spacing: -.8px; margin-top: 10px; }
+.hero-lens-caption p { margin-top: 10px; font-size: 11px; color: #ffffffba; }
+.hero-lens-switch { position: relative; display: flex; width: fit-content; max-width: 100%; margin: -2px auto 0; padding: 6px; gap: 5px; border-radius: 99px; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 10px 24px #25283e0c; translate: 0 -17px; }
+.hero-lens-switch button { justify-content: center; gap: 7px; padding: 11px 15px; min-height: 43px; background: transparent; color: var(--ink-2); border-radius: 99px; font-size: 11px; transition: background .25s, color .25s; }
+.hero-lens-switch button[aria-pressed="true"] { background: var(--coral); color: white; }
+.hero-lens-hint { margin-top: -7px; text-align: center; font-size: 10px; color: var(--ink-2); }
+.hero-lens-corner { position: absolute; width: 17px; height: 17px; border-color: #ffffff85; border-style: solid; }
+.corner-tl { top: 115px; left: 22px; border-width: 1px 0 0 1px; }.corner-tr { top: 115px; right: 22px; border-width: 1px 1px 0 0; }.corner-bl { bottom: 150px; left: 22px; border-width: 0 0 1px 1px; }.corner-br { bottom: 150px; right: 22px; border-width: 0 1px 1px 0; }
+.hero-highlights { margin-top: 16px; }
+@media(max-width:900px) { .travel-hero-inner { gap: 30px; }.travel-copy h1.travel-app-title { font-size: 60px; }.hero-lens-scene { height: 440px; }.hero-lens-caption strong { font-size: 23px; } }
+@media(max-width:600px) {
+  .travel-hero { padding-top: 100px; }.travel-hero-inner { grid-template-columns: 1fr; gap: 28px; }
+  .travel-copy h1.travel-app-title { font-size: clamp(49px, 13vw, 65px); margin-block: 16px 20px; }
+  .hero-lens { padding-bottom: 10px; }.hero-lens-scene { height: 350px; border-radius: 90px 90px 22px 22px; }
+  .hero-lens-top { top: 28px; left: 25px; right: 25px; }.hero-lens-caption { left: 24px; bottom: 30px; }
+  .hero-lens-caption strong { font-size: 24px; }.hero-highlights { margin-top: 16px; }
+}
+@media(prefers-reduced-motion:reduce) { .hero-lens-scene > img, .hero-lens-switch button { transition: none; } }
