@@ -25,9 +25,9 @@ export const RELEASE = {
   // Shown next to the button so people know what they're about to pull over
   // mobile data before they tap it, not after. Taken from the file itself;
   // the fallback is only for an APK hosted off-site (set it by hand then).
-  size: APK ? formatSize(APK.bytes) : "57 MB",
+  size: APK ? formatSize(APK.bytes) : "94 MB",
   // ISO date; formatted for display at the call site.
-  released: "2026-09-28",
+  released: "2026-10-20",
   // Hosted as a GitHub Release asset rather than in public/downloads/: the
   // APK is git-ignored, so Vercel never has the file, and a 57 MB binary
   // doesn't belong in every deploy anyway. The release tag must be
@@ -38,7 +38,7 @@ export const RELEASE = {
   // same-origin APK; for this off-site one it is pasted from:
   //   certutil -hashfile histoury-v1.0.0.apk SHA256   (Windows)
   //   shasum -a 256 histoury-v1.0.0.apk               (macOS/Linux)
-  sha256: APK ? APK.sha256 : "18a39a09fdf48980a9f9136e2b6016e73b4a55eeddd6bc65f53b14e5ed316b39",
+  sha256: APK ? APK.sha256 : "e2baf3934b006930eea312ccc6f277d920e6b44ff6b35712206816026fe6dacd",
 };
 
 /**
@@ -69,3 +69,4 @@ export function formatReleaseDate(iso) {
 // the button for people reading the page on a computer.
 // eslint-disable-next-line no-undef
 export const DOWNLOAD_QR_SVG = typeof __DOWNLOAD_QR_SVG__ !== "undefined" ? __DOWNLOAD_QR_SVG__ : null;
+
