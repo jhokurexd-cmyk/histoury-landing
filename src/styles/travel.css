@@ -496,3 +496,143 @@
   .sites-sticky .arch-item { flex: 0 0 min(74vw, 300px); }
   .sites-sticky .arch-item:nth-child(n) .arch { aspect-ratio: 4 / 3; }
 }
+
+/* Supplied mockups already include the handset: preserve it without a second bezel. */
+.device.device-preframed { padding: 0; background: transparent; aspect-ratio: 1466 / 3101; border-radius: calc(var(--w) * .15); box-shadow: none; filter: drop-shadow(0 12px 18px rgba(25, 20, 20, .14)); }
+.device.device-preframed img { object-fit: contain; border-radius: 0; }
+
+.ar-artwork { min-width: 0; overflow: hidden; border-radius: 24px; background: #fff; }
+.ar-artwork img { display: block; width: 100%; height: auto; }
+.actual-arrival-notice { display: block; width: min(100%, 360px); height: auto; margin-inline: auto; filter: drop-shadow(0 8px 18px rgba(0,0,0,.15)); }
+.shot-peek img.preframed-peek { border: 0; border-radius: 0; }
+@media(max-width:900px) { .ar-artwork { width: min(100%, 460px); margin-inline: auto; } }
+
+/* Remove the screenshot's rectangular surround from the displayed notification. */
+.actual-arrival-notice {
+  clip-path: inset(4% 1.5% 9% .3% round 999px);
+  filter: none;
+}
+
+/* Isolate the three-phone composition from the supplied poster. */
+.ar-artwork {
+  position: relative;
+  aspect-ratio: 941 / 1000;
+  border-radius: 0;
+  background: transparent;
+  overflow: hidden;
+}
+.ar-artwork img {
+  position: absolute;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  top: -45%;
+  left: 0;
+  clip-path: polygon(0 0,100% 0,100% 80%,85% 80%,85% 100%,15% 100%,15% 80%,0 80%);
+}
+
+/* Use the same three-phone AR composition in the Experience walkthrough. */
+.device.device-ar-artwork {
+  padding: 0;
+  width: calc(var(--w) * 1.65);
+  height: auto;
+  aspect-ratio: 941 / 1000;
+  margin-left: calc(var(--w) * -.325);
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+}
+.device.device-ar-artwork img {
+  position: absolute;
+  top: -45%;
+  left: 0;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  border-radius: 0;
+  clip-path: polygon(0 0,100% 0,100% 80%,85% 80%,85% 100%,15% 100%,15% 80%,0 80%);
+}
+.mobile-walk-card .device-ar-artwork { top: 50%; margin-left: 0; translate: 0 -50%; }
+.stage-devices:has(.device-ar-artwork.is-active) { align-self: center; }
+.stage-device.device-ar-artwork { top: 50%; bottom: auto; translate: 0 -50%; }
+
+/* Display only the handset, excluding the mockup's white canvas. */
+.device.device-fort-capture { position: relative; aspect-ratio: 270 / 574; overflow: hidden; border-radius: calc(var(--w) * .17); filter: none; }
+.device.device-fort-capture img { position: absolute; width: 120%; max-width: none; height: 108.55%; left: -10%; top: -3.48%; object-fit: fill; border-radius: 0; }
+.stage-device.device-fort-capture, .mobile-walk-phone.device-fort-capture { position: absolute; }
+
+/* Reveal the actual notification when its feature card enters the viewport. */
+@keyframes arrival-notice-pop {
+  0% { opacity: 0; transform: translateY(-20px) scale(.9); }
+  65% { opacity: 1; transform: translateY(3px) scale(1.025); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.reveal-ready .tile-photo:not(.is-in) .actual-arrival-notice { opacity: 0; }
+.tile-photo.is-in .actual-arrival-notice { animation: arrival-notice-pop .7s var(--ease-out) .3s both; }
+@media(prefers-reduced-motion:reduce) {
+  .tile-photo.is-in .actual-arrival-notice { animation: none; }
+  .reveal-ready .tile-photo:not(.is-in) .actual-arrival-notice { opacity: 1; }
+}
+
+/* Preserve the supplied phone mockups' intrinsic ratio inside cropped tiles. */
+.shot-peek img.preframed-peek {
+  display: block;
+  width: min(230px, 75%);
+  height: auto;
+  max-width: 100%;
+  flex: 0 0 auto;
+  object-fit: contain;
+  border: 0;
+  border-radius: 0;
+}
+@media(max-width:600px) { .shot-peek img.preframed-peek { width: min(205px, 72%); } }
+
+/* Trigger from the notification's own viewport position, replaying on re-entry. */
+.tile-photo .notices .actual-arrival-notice { opacity: 0; transform: translateY(-20px) scale(.9); animation: none; }
+.tile-photo .notices.notice-is-visible .actual-arrival-notice { animation: arrival-notice-pop .75s var(--ease-out) .15s both; }
+@media(prefers-reduced-motion:reduce) {
+  .tile-photo .notices .actual-arrival-notice,
+  .tile-photo .notices.notice-is-visible .actual-arrival-notice { opacity: 1; transform: none; animation: none; }
+}
+
+/* Edge-to-edge navigation on phones; retain the desktop max-width header. */
+@media(max-width:600px) {
+  .nav, .nav.nav-scrolled {
+    top: 0;
+    left: 0;
+    right: 0;
+    max-width: none;
+    margin: 0;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    background: var(--nav-bg-scrolled);
+    padding-top: env(safe-area-inset-top);
+  }
+  .nav .nav-inner { height: 64px; padding-inline: var(--gutter); }
+  .nav .nav-links { left: 10px; right: 10px; }
+}
+
+@media(max-width:600px) {
+  .nav, .nav.nav-scrolled {
+    background: color-mix(in srgb, var(--paper) 72%, transparent);
+    backdrop-filter: blur(18px) saturate(1.4);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  }
+}
+
+/* Three actual screens: no baked-in poster background or crop edges. */
+.ar-phone-group { position: relative; width: 100%; aspect-ratio: 1 / 1.1; min-width: 0; }
+.ar-phone-group .device { position: absolute; --w: 45%; width: var(--w); padding: 1.4%; border-radius: 30px; box-shadow: 0 15px 28px -16px rgba(0,0,0,.45); }
+.ar-phone-group .device img { border-radius: 24px; }
+.ar-group-left { left: 1%; top: 13%; transform: rotate(-5deg) scale(.87); transform-origin: left center; }
+.ar-group-right { right: 1%; top: 13%; transform: rotate(5deg) scale(.87); transform-origin: right center; }
+.ar-group-center { left: 27.5%; top: 4%; z-index: 2; }
+@media(max-width:900px) { .ar-phone-group { width: min(100%, 480px); margin-inline: auto; } }
+@media(max-width:600px) { .ar-phone-group .device { border-radius: 22px; }.ar-phone-group .device img { border-radius: 17px; } }
+
+/* Original supplied three-phone arrangement, with a transparent background. */
+.ar-original-composition { min-width: 0; width: 100%; }
+.ar-original-composition img { display: block; width: 100%; height: auto; }
+@media(max-width:900px) { .ar-original-composition { width: min(100%, 500px); margin-inline: auto; } }

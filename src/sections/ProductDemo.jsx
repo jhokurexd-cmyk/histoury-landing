@@ -2,10 +2,10 @@ import { useRef, useState } from "react";
 
 import { Device } from "../components/Device";
 import { Icon } from "../components/Icon";
-import arrivedShot from "../assets/app/arrived.webp";
-import tripShot from "../assets/app/trip.webp";
-import visitsShot from "../assets/app/visits.webp";
-import siteInfoShot from "../assets/app/learn-fort-santiago.png";
+import arrivedShot from "../assets/app/mockup-arrival.png";
+import tripShot from "../assets/app/mockup-itinerary.png";
+import visitsShot from "../assets/app/mockup-visit-history.png";
+import siteInfoShot from "../assets/app/mockup-history.png";
 
 // Four real screens, picked to be the ones How it works doesn't already
 // walk through in detail. Each caption describes what the screenshot shows.
@@ -16,7 +16,7 @@ const SCREENS = [
     title: "Plan",
     body: "Choose the heritage sites you want to visit and build your route, with stops, distances and travel times laid out for your day.",
     shot: tripShot,
-    alt: "An Intramuros trip: 8 stops, 1.7 km, 23 minutes of walking, starting at 9:00 AM and back by 12:41 PM.",
+    alt: "An Intramuros itinerary with seven stops, 1.1 km, 15 minutes travel time and a mapped route.",
   },
   {
     id: "arrive",
@@ -24,7 +24,7 @@ const SCREENS = [
     title: "Arrive",
     body: "Reach a heritage site and Histoury welcomes you with an arrival notification, unlocking its history for you to explore.",
     shot: arrivedShot,
-    alt: "The arrival screen: You've Arrived at Manila Cathedral, with a photo and a View Historical Info button.",
+    alt: "Arrival at Manila Cathedral with Explore Site and Explore Other Sites buttons.",
   },
   {
     id: "learn",
@@ -32,7 +32,7 @@ const SCREENS = [
     title: "Learn",
     body: "Get to know each site through its overview, timeline and stories. Listen to the narration, explore the sources, and revisit its history after your visit.",
     shot: siteInfoShot,
-    alt: "Fort Santiago's unlocked site information, with Overview, Timeline, Stories and Sources tabs and historical audio narration.",
+    alt: "Manila Cathedral's historical information, with Overview, Timeline, Stories and Sources tabs and historical audio narration.",
   },
   {
     id: "track",
@@ -40,7 +40,7 @@ const SCREENS = [
     title: "Track",
     body: "Look back at the sites you've visited and see which ones are still waiting. Keep your Intramuros journey in one place.",
     shot: visitsShot,
-    alt: "Visit History: 6 sites visited, Casa Manila Museum marked visited, and a list of sites yet to explore.",
+    alt: "Visit History showing five of nineteen sites visited, review buttons and sites yet to explore.",
   },
 ];
 
@@ -133,3 +133,5 @@ function ProductDemo() {
 }
 
 export default ProductDemo;
+
+

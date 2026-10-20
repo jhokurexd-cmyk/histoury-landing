@@ -1,6 +1,8 @@
+import { useEffect, useRef, useState } from "react";
 import { Icon } from "../components/Icon";
-import offlineShot from "../assets/app/offline.webp";
-import visitsShot from "../assets/app/visits.webp";
+import offlineShot from "../assets/app/mockup-offline.png";
+import visitsShot from "../assets/app/mockup-visit-history.png";
+import arrivalNotification from "../assets/app/arrival-notification.png";
 import generalLuna from "../assets/photos/general-luna.webp";
 
 // Each entry is something the app actually does today. Nothing aspirational —
@@ -19,6 +21,20 @@ const SMALL = [
  * slice of the real screen; the rest are a line each.
  */
 function Features() {
+  const noticeRef = useRef(null);
+  const [noticeVisible, setNoticeVisible] = useState(false);
+
+  useEffect(() => {
+    if (!("IntersectionObserver" in window)) {
+      setNoticeVisible(true);
+      return undefined;
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      setNoticeVisible(entry.isIntersecting);
+    }, { threshold: 0.7, rootMargin: "-90px 0px -12% 0px" });
+    if (noticeRef.current) observer.observe(noticeRef.current);
+    return () => observer.disconnect();
+  }, []);
   return (
     <section className="section" id="features">
       <header className="section-head split" data-reveal>
@@ -37,15 +53,8 @@ function Features() {
       <div className="bento">
         <article className="tile tile-photo" data-reveal>
           <img className="tile-bg" src={generalLuna} alt="" loading="lazy" decoding="async" width="1400" height="1050" />
-          <div className="notices" aria-hidden="true">
-            <div className="notice">
-              <span className="notice-app"><Icon name="map-pin" size={14} /></span>
-              <div>
-                <p className="notice-meta">Histoury · now</p>
-                <p className="notice-title">You&rsquo;re near San Agustin Church</p>
-                <p className="notice-text">Tap to learn about its history.</p>
-              </div>
-            </div>
+          <div ref={noticeRef} className={`notices${noticeVisible ? " notice-is-visible" : ""}`}>
+            <img className="actual-arrival-notice" src={arrivalNotification} alt="Histoury notification: You've Arrived! Tap to discover this site's history." />
           </div>
           <div className="tile-copy">
             <h3>Arrive, and the story finds you.</h3>
@@ -64,7 +73,7 @@ function Features() {
             <p>Download a site&rsquo;s 3D model and narration before you go.</p>
           </div>
           <div className="shot-peek" aria-hidden="true">
-            <img src={offlineShot} alt="" loading="lazy" decoding="async" width="420" height="946" />
+            <img className="preframed-peek" src={offlineShot} alt="" loading="lazy" decoding="async" width="420" height="946" />
           </div>
         </article>
 
@@ -75,7 +84,7 @@ function Features() {
             <p>Every site you&rsquo;ve explored, and the ones still waiting.</p>
           </div>
           <div className="shot-peek" aria-hidden="true">
-            <img src={visitsShot} alt="" loading="lazy" decoding="async" width="420" height="943" />
+            <img className="preframed-peek" src={visitsShot} alt="" loading="lazy" decoding="async" width="420" height="943" />
           </div>
         </article>
 
@@ -107,3 +116,5 @@ function Features() {
 }
 
 export default Features;
+
+

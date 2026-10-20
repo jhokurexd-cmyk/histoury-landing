@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from "react";
 
 import { Device } from "../components/Device";
 import { Icon } from "../components/Icon";
-import mapShot from "../assets/app/map.webp";
-import siteInfoShot from "../assets/app/site-info.webp";
-import arCaptureShot from "../assets/app/ar-capture.webp";
-import tripShot from "../assets/app/trip.webp";
+import mapShot from "../assets/app/mockup-map.png";
+import siteInfoShot from "../assets/app/mockup-history.png";
+import arCaptureShot from "../assets/app/mockup-fort-capture.png";
+import tripShot from "../assets/app/mockup-itinerary.png";
 
 // The same four beats the app's own onboarding uses, in the same order.
 const STEPS = [
@@ -23,7 +23,7 @@ const STEPS = [
     body: "A site's full history opens when you visit it in person: verified narratives, a timeline of key events, stories and sources, plus an audio guide for eyes-up exploring.",
     points: ["Verified narratives with sources", "Timelines and audio guides", "Unlocks when you arrive"],
     shot: siteInfoShot,
-    alt: "The Site Information screen: visited sites open, the rest locked until you visit.",
+    alt: "Manila Cathedral historical information, with overview, timeline, stories, sources and audio narration.",
   },
   {
     kicker: "Experience",
@@ -31,7 +31,7 @@ const STEPS = [
     body: "Raise your camera at the site and a 3D reconstruction appears in place. Take a photo with a period filter and it saves straight to your phone.",
     points: ["AR reconstructions on site", "Period photo filters", "Photos stay on your phone"],
     shot: arCaptureShot,
-    alt: "The AR camera with photo filters such as Old Photograph and War 1940s, and a Save Photo button.",
+    alt: "Fort Santiago reconstructed in the AR camera, with a photo capture button.",
   },
   {
     kicker: "Plan",
@@ -39,7 +39,7 @@ const STEPS = [
     body: "Pick the sites you want, and Histoury builds the route: stops in order, distance, travel time and when you'll be back. Reorder it, optimise it, or save it for later.",
     points: ["Itineraries with timings", "One-tap route optimising", "Walk, drive or ride"],
     shot: tripShot,
-    alt: "An Intramuros trip with 8 stops, 1.7 km, and a start and return time.",
+    alt: "An Intramuros itinerary with seven stops, a mapped route, travel estimates and Start Trip Now.",
   },
 ];
 
@@ -186,3 +186,6 @@ function Steps() {
 }
 
 export default Steps;
+
+
+

@@ -1,8 +1,8 @@
-import { Device } from "../components/Device";
+
 import { Icon } from "../components/Icon";
-import arCathedral from "../assets/app/ar-cathedral.webp";
-import arTimeline from "../assets/app/ar-timeline.webp";
-import cathedralTower from "../assets/photos/cathedral-tower.webp";
+import arComposition from "../assets/app/ar-showcase-transparent.png";
+
+
 
 // What the AR view actually does today, in the order a visitor meets it.
 const POINTS = [
@@ -61,28 +61,8 @@ function ArShowcase() {
           </p>
         </div>
 
-        <div className="ar-visual" data-reveal style={{ "--i": 1 }}>
-          <img className="ar-photo" src={cathedralTower} alt="" loading="lazy" decoding="async" width="1400" height="1050" />
-
-          <Device
-            className="ar-device ar-device-back"
-            src={arTimeline}
-            alt="Manila Cathedral's timeline open over the AR view, starting with the first church on the site in 1571."
-          />
-          <Device
-            className="ar-device ar-device-front"
-            src={arCathedral}
-            alt="The AR view: a 3D reconstruction of Manila Cathedral placed in the plaza, seen through the phone's camera."
-          />
-
-          <div className="ar-chip ar-chip-a" aria-hidden="true">
-            <span className="ar-chip-icon"><Icon name="cube" size={15} /></span>
-            <span><strong>AR reconstruction</strong>Placed in the plaza</span>
-          </div>
-          <div className="ar-chip ar-chip-b" aria-hidden="true">
-            <span className="ar-chip-icon"><Icon name="clock" size={15} /></span>
-            <span><strong>Manila Cathedral</strong>First church here, 1571</span>
-          </div>
+        <div className="ar-original-composition" data-reveal style={{ "--i": 1 }}>
+          <img src={arComposition} alt="Histoury's three AR phone previews: Manila Cathedral, San Agustin Church with historical narration, and Fort Santiago." loading="lazy" decoding="async" />
         </div>
       </div>
     </section>
@@ -90,3 +70,5 @@ function ArShowcase() {
 }
 
 export default ArShowcase;
+
+

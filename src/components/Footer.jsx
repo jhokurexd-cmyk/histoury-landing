@@ -61,7 +61,7 @@ function Footer() {
       </div>
 
       <div className="footer-base">
-        <p>A capstone project · Intramuros Historical Tourism Guide · 2024–2025</p>
+        <p>A capstone project · Intramuros Historical Tourism Guide · 2026–2027</p>
         <p>All rights reserved.</p>
       </div>
     </footer>
