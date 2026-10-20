@@ -33,6 +33,8 @@ function WalledCity() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     let frame = 0;
     let distance = 0;
+    let viewportWidth = window.innerWidth;
+    let viewportHeight = window.innerHeight;
     const update = () => {
       frame = 0;
       if (!mobile.matches || reduced.matches) return;
@@ -41,17 +43,23 @@ function WalledCity() {
     };
     const measure = () => {
       distance = Math.max(0, cards.scrollWidth - cards.clientWidth);
-      const enabled = mobile.matches && !reduced.matches && distance > 0 && sticky.offsetHeight < window.innerHeight - 90;
+      const enabled = mobile.matches && !reduced.matches && distance > 0 && sticky.offsetHeight < viewportHeight - 90;
       journey.classList.toggle("is-scroll-journey", enabled);
       journey.style.height = enabled ? `${sticky.offsetHeight + distance}px` : "";
       if (!enabled) distance = 0;
       else update();
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+    const resize = () => {
+      if (window.innerWidth === viewportWidth) return;
+      viewportWidth = window.innerWidth;
+      viewportHeight = window.innerHeight;
+      measure();
+    };
     const observer = new ResizeObserver(measure);
     observer.observe(sticky);
     window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", measure);
+    window.addEventListener("resize", resize);
     mobile.addEventListener("change", measure);
     reduced.addEventListener("change", measure);
     measure();
@@ -59,7 +67,7 @@ function WalledCity() {
       cancelAnimationFrame(frame);
       observer.disconnect();
       window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", measure);
+      window.removeEventListener("resize", resize);
       mobile.removeEventListener("change", measure);
       reduced.removeEventListener("change", measure);
     };

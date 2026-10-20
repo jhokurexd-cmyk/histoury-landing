@@ -58,23 +58,31 @@ function Steps() {
 
   useEffect(() => {
     const query = window.matchMedia("(max-width: 900px)");
+    let viewportWidth = window.innerWidth;
+    let viewportHeight = window.innerHeight;
     let frame = 0;
     const update = () => {
       frame = 0;
       if (!query.matches || !mobileRef.current) return;
       const element = mobileRef.current;
-      const distance = element.offsetHeight - window.innerHeight;
+      const distance = element.offsetHeight - viewportHeight;
       const progress = Math.max(0, Math.min(0.999, (85 - element.getBoundingClientRect().top) / Math.max(1, distance)));
       setActive(Math.floor(progress * STEPS.length));
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+    const resize = () => {
+      if (window.innerWidth === viewportWidth) return;
+      viewportWidth = window.innerWidth;
+      viewportHeight = window.innerHeight;
+      schedule();
+    };
     window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
+    window.addEventListener("resize", resize);
     update();
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
+      window.removeEventListener("resize", resize);
     };
   }, []);
 

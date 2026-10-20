@@ -43,7 +43,11 @@ function ArShowcase() {
   const rotationRef = useRef(0);
   const swipeRef = useRef(null);
   const swipeFrame = useRef(0);
+  const gestureBusy = useRef(false);
+  const stopScrollMotion = useRef(() => {});
   const settleSwipe = (target) => {
+    gestureBusy.current = true;
+    stopScrollMotion.current();
     cancelAnimationFrame(swipeFrame.current);
     const from = rotationRef.current;
     const began = performance.now();
@@ -54,12 +58,14 @@ function ArShowcase() {
       rotationRef.current = from + (target - from) * eased;
       setRotation(rotationRef.current);
       if (progress < 1) swipeFrame.current = requestAnimationFrame(tick);
+      else gestureBusy.current = false;
     };
     swipeFrame.current = requestAnimationFrame(tick);
   };
   useEffect(() => () => cancelAnimationFrame(swipeFrame.current), []);
   const startSwipe = (event) => {
     if (!window.matchMedia("(max-width: 900px)").matches || event.target.closest("button")) return;
+    gestureBusy.current = true;
     cancelAnimationFrame(swipeFrame.current);
     swipeRef.current = { x: event.clientX, y: event.clientY, angle: rotationRef.current, width: event.currentTarget.clientWidth, horizontal: false };
     event.currentTarget.setPointerCapture(event.pointerId);
@@ -69,8 +75,12 @@ function ArShowcase() {
     if (!swipe) return;
     const dx = event.clientX - swipe.x;
     const dy = event.clientY - swipe.y;
-    if (!swipe.horizontal && Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 10) { swipeRef.current = null; return; }
-    if (Math.abs(dx) > 8) swipe.horizontal = true;
+    if (!swipe.horizontal && Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 10) { swipeRef.current = null; gestureBusy.current = false; return; }
+    if (!swipe.horizontal && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy) * 1.3) {
+      swipe.horizontal = true;
+      stopScrollMotion.current();
+      swipe.angle = rotationRef.current;
+    }
     if (!swipe.horizontal) return;
     rotationRef.current = swipe.angle + dx / swipe.width * Math.PI * 2;
     setRotation(rotationRef.current);
@@ -79,6 +89,7 @@ function ArShowcase() {
     const swipe = swipeRef.current;
     swipeRef.current = null;
     if (!swipe) return;
+    if (!swipe.horizontal) { gestureBusy.current = false; return; }
     const step = Math.PI * 2 / 3;
     const delta = event.clientX - swipe.x;
     const initial = Math.round(swipe.angle / step);
@@ -96,8 +107,18 @@ function ArShowcase() {
     let settledStep = 0;
     let moving = false;
     let holdTimer;
+    let lastScrollStep = null;
+    stopScrollMotion.current = () => {
+      cancelAnimationFrame(frame);
+      clearTimeout(holdTimer);
+      moving = false;
+      settledStep = Math.round(rotationRef.current / (Math.PI * 2 / 3));
+      desiredStep = settledStep;
+    };
+    let viewportWidth = window.innerWidth;
+    let viewportHeight = window.innerHeight;
     const advance = () => {
-      if (moving || settledStep === desiredStep) return;
+      if (gestureBusy.current || moving || settledStep === desiredStep) return;
       moving = true;
       const nextStep = settledStep + Math.sign(desiredStep - settledStep);
       from = rotationRef.current;
@@ -106,6 +127,7 @@ function ArShowcase() {
       frame = requestAnimationFrame(animate);
     };
     const animate = (now) => {
+      if (swipeRef.current?.horizontal) { moving = false; return; }
       const progress = Math.min(1, (now - started) / 1150);
       // Smooth acceleration and deceleration, with no abrupt initial jump.
       const eased = progress * progress * progress * (progress * (progress * 6 - 15) + 10);
@@ -120,20 +142,29 @@ function ArShowcase() {
       }
     };
     const update = () => {
-      if (!journeyRef.current || reduced.matches) return;
+      if (!journeyRef.current || reduced.matches || gestureBusy.current) return;
       const element = journeyRef.current;
-      const distance = Math.max(1, element.offsetHeight - window.innerHeight + 100);
+      const distance = Math.max(1, element.offsetHeight - viewportHeight + 100);
       const progress = Math.max(0, Math.min(1, (100 - element.getBoundingClientRect().top) / distance));
       // Forward scroll follows one rightward orbit; upward scroll retraces it.
       const step = Math.min(2, Math.floor(progress * 3));
-      desiredStep = step;
+      if (step === lastScrollStep) return;
+      lastScrollStep = step;
+      if (!moving) settledStep = Math.round(rotationRef.current / (Math.PI * 2 / 3));
+      desiredStep = -step;
       advance();
 
     };
+    const resize = () => {
+      if (window.innerWidth === viewportWidth) return;
+      viewportWidth = window.innerWidth;
+      viewportHeight = window.innerHeight;
+      update();
+    };
     window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
+    window.addEventListener("resize", resize);
     update();
-    return () => { cancelAnimationFrame(frame); clearTimeout(holdTimer); window.removeEventListener("scroll", update); window.removeEventListener("resize", update); };
+    return () => { cancelAnimationFrame(frame); clearTimeout(holdTimer); window.removeEventListener("scroll", update); window.removeEventListener("resize", resize); };
   }, []);
   return (
     <section className="section ar-show" id="ar">
@@ -170,7 +201,7 @@ function ArShowcase() {
         </div>
 
         <div className="ar-stack-visual">
-          <div className="ar-stack-deck" onPointerDown={startSwipe} onPointerMove={moveSwipe} onPointerUp={endSwipe} onPointerCancel={() => { swipeRef.current = null; settleSwipe(Math.round(rotationRef.current / (Math.PI * 2 / 3)) * Math.PI * 2 / 3); }}>
+          <div className="ar-stack-deck" onPointerDown={startSwipe} onPointerMove={moveSwipe} onPointerUp={endSwipe} onPointerCancel={() => { const horizontal = swipeRef.current?.horizontal; swipeRef.current = null; if (horizontal) settleSwipe(Math.round(rotationRef.current / (Math.PI * 2 / 3)) * Math.PI * 2 / 3); else gestureBusy.current = false; }}>
             {SITES.map((site, index) => {
               const angle = index * Math.PI * 2 / 3 - rotation;
               const depth = Math.cos(angle);
@@ -194,6 +225,7 @@ function ArShowcase() {
 }
 
 export default ArShowcase;
+
 
 
 

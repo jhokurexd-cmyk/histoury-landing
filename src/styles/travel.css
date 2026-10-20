@@ -676,3 +676,12 @@
 .footer-back-top { display: inline-flex; align-items: center; gap: 9px; color: var(--coral-text); font-size: 12px; font-weight: 600; min-height: 44px; text-decoration: none; }
 .footer-back-top span { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--coral-soft); font-size: 17px; }
 .footer-back-top:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+@media(max-width:900px) {
+  .mobile-walk-copy { min-height: 180px; }
+  .mobile-walk, .sites-journey, .ar-stack-journey { overflow-anchor: none; }
+  .mobile-walk-sticky, .sites-sticky, .ar-stack-sticky { backface-visibility: hidden; }
+}
+@media(max-width:600px) {
+  .demo-mobile-description { min-height: 7em; }
+}
