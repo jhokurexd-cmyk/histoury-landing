@@ -41,6 +41,50 @@ function ArShowcase() {
   const journeyRef = useRef(null);
   const [rotation, setRotation] = useState(0);
   const rotationRef = useRef(0);
+  const swipeRef = useRef(null);
+  const swipeFrame = useRef(0);
+  const settleSwipe = (target) => {
+    cancelAnimationFrame(swipeFrame.current);
+    const from = rotationRef.current;
+    const began = performance.now();
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const tick = (now) => {
+      const progress = reduced ? 1 : Math.min(1, (now - began) / 450);
+      const eased = 1 - (1 - progress) ** 3;
+      rotationRef.current = from + (target - from) * eased;
+      setRotation(rotationRef.current);
+      if (progress < 1) swipeFrame.current = requestAnimationFrame(tick);
+    };
+    swipeFrame.current = requestAnimationFrame(tick);
+  };
+  useEffect(() => () => cancelAnimationFrame(swipeFrame.current), []);
+  const startSwipe = (event) => {
+    if (!window.matchMedia("(max-width: 900px)").matches || event.target.closest("button")) return;
+    cancelAnimationFrame(swipeFrame.current);
+    swipeRef.current = { x: event.clientX, y: event.clientY, angle: rotationRef.current, width: event.currentTarget.clientWidth, horizontal: false };
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+  const moveSwipe = (event) => {
+    const swipe = swipeRef.current;
+    if (!swipe) return;
+    const dx = event.clientX - swipe.x;
+    const dy = event.clientY - swipe.y;
+    if (!swipe.horizontal && Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 10) { swipeRef.current = null; return; }
+    if (Math.abs(dx) > 8) swipe.horizontal = true;
+    if (!swipe.horizontal) return;
+    rotationRef.current = swipe.angle + dx / swipe.width * Math.PI * 2;
+    setRotation(rotationRef.current);
+  };
+  const endSwipe = (event) => {
+    const swipe = swipeRef.current;
+    swipeRef.current = null;
+    if (!swipe) return;
+    const step = Math.PI * 2 / 3;
+    const delta = event.clientX - swipe.x;
+    const initial = Math.round(swipe.angle / step);
+    const next = swipe.horizontal && Math.abs(delta) > 35 ? initial + Math.sign(delta) : initial;
+    settleSwipe(next * step);
+  };
   const active = ((Math.round(rotation / (Math.PI * 2 / 3)) % 3) + 3) % 3;
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -126,7 +170,7 @@ function ArShowcase() {
         </div>
 
         <div className="ar-stack-visual">
-          <div className="ar-stack-deck">
+          <div className="ar-stack-deck" onPointerDown={startSwipe} onPointerMove={moveSwipe} onPointerUp={endSwipe} onPointerCancel={() => { swipeRef.current = null; settleSwipe(Math.round(rotationRef.current / (Math.PI * 2 / 3)) * Math.PI * 2 / 3); }}>
             {SITES.map((site, index) => {
               const angle = index * Math.PI * 2 / 3 - rotation;
               const depth = Math.cos(angle);
@@ -134,12 +178,12 @@ function ArShowcase() {
               const scale = .925 + depth * .075;
               const y = (1 - depth) * 11;
               return <div key={site.name} className={`ar-stack-phone ar-stack-orbit ar-stack-source-${index}`} style={{ transform: `translate3d(${x}%, ${y}px, 0) scale(${scale}) rotateY(${Math.sin(angle) * -3}deg)`, zIndex: Math.round(100 + depth * 100) }} aria-hidden={index !== active}>
-                <img src={site.image} alt={`${site.name} in Histoury's AR camera`} loading="eager" />
+                <img src={site.image} alt={`${site.name} in Histoury's AR camera`} loading="eager" draggable="false" />
               </div>;
             })}
           </div>
           <div className="ar-stack-pagination" role="group" aria-label="Featured AR site">
-            {SITES.map((site, index) => <span key={site.name} className={`ar-orbit-dot${index === active ? " is-active" : ""}`} aria-label={site.name} />)}
+            {SITES.map((site, index) => <button key={site.name} type="button" aria-label={`Show ${site.name}`} aria-pressed={index === active} onClick={() => { const step = Math.PI * 2 / 3; const current = Math.round(rotationRef.current / step); let difference = (index - current % 3 + 3) % 3; if (difference > 1) difference -= 3; settleSwipe((current + difference) * step); }}><span /></button>)}
           </div>
           <p className="ar-stack-name">{SITES[active].name}</p>
         </div>

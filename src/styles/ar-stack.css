@@ -105,3 +105,18 @@
 .ar-stack-deck { contain: layout; }
 @media(max-width:900px) { .ar-stack-journey { height: calc(100svh + 600px); } }
 @media(prefers-reduced-motion:reduce) { .ar-stack-journey { height: auto; } }
+
+@media(max-width:900px) {
+  .ar-stack-journey { height: auto; }
+  .ar-stack-sticky { position: relative; top: auto; min-height: 0; }
+  .ar-stack-deck { touch-action: pan-y pinch-zoom; cursor: grab; user-select: none; }
+  .ar-stack-deck:active { cursor: grabbing; }
+  .ar-stack-phone img { pointer-events: none; -webkit-user-drag: none; }
+}
+
+/* Mobile supports both vertical scroll stages and direct horizontal swipes. */
+@media(max-width:900px) {
+  .ar-stack-journey { height: calc(100svh + 600px); }
+  .ar-stack-sticky { position: sticky; top: 78px; }
+}
+@media(prefers-reduced-motion:reduce) { .ar-stack-journey { height: auto; }.ar-stack-sticky { position: static; } }

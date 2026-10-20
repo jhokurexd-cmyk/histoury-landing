@@ -11,7 +11,7 @@ function Hero() {
       <div className="travel-hero-inner">
         <div className="travel-copy">
           <p className="travel-eyebrow"><span /> Your Intramuros guide for Android</p>
-          <h1 id="hero-title" className="travel-app-title">History,<br /><span>brought back<br />to life.</span></h1>
+          <h1 id="hero-title" className="travel-app-title">History,<br /><span>brought back<br />{" "}to life.</span></h1>
           <p className="travel-intro">Explore Intramuros with history in your hands. See landmarks as they once stood, listen to their stories, and find your way with Histoury.</p>
           <div className="travel-actions">
             <a className="btn-primary" href="#install">Download for Android <Icon name="arrow-right" size={18} /></a>
