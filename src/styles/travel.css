@@ -672,3 +672,7 @@
   .hero-lens-caption strong { font-size: 24px; }.hero-highlights { margin-top: 16px; }
 }
 @media(prefers-reduced-motion:reduce) { .hero-lens-scene > img, .hero-lens-switch button { transition: none; } }
+
+.footer-back-top { display: inline-flex; align-items: center; gap: 9px; color: var(--coral-text); font-size: 12px; font-weight: 600; min-height: 44px; text-decoration: none; }
+.footer-back-top span { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--coral-soft); font-size: 17px; }
+.footer-back-top:hover { text-decoration: underline; text-underline-offset: 3px; }

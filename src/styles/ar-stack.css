@@ -92,3 +92,16 @@
 /* Real alpha cutouts replace the old rounded-rectangle crop. */
 .ar-stack-phone.ar-stack-orbit { background: transparent; border-radius: 0; overflow: visible; box-shadow: none; }
 .ar-stack-phone.ar-stack-orbit img { inset: 0; width: 100%; height: 100%; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 12px rgba(0,0,0,.2)); }
+
+/* Normalize each handset's opaque bounds, excluding unequal transparent margins. */
+.ar-stack-phone.ar-stack-orbit img { object-fit: fill; max-width: none; inset: auto; }
+.ar-stack-phone.ar-stack-source-0 img { width: 114.6944%; height: 110.0555%; left: -7.5423%; top: -1.604%; }
+.ar-stack-phone.ar-stack-source-1 img { width: 111.9691%; height: 108.7899%; left: -6.1776%; top: -3.6123%; }
+.ar-stack-phone.ar-stack-source-2 img { width: 114.9157%; height: 109.2923%; left: -7.0039%; top: -2.3385%; }
+
+/* Native sticky scrolling, matching the stable landmark and walkthrough sections. */
+.ar-stack-journey { height: calc(100svh + 600px); overflow-anchor: none; }
+.ar-stack-sticky { align-items: center; }
+.ar-stack-deck { contain: layout; }
+@media(max-width:900px) { .ar-stack-journey { height: calc(100svh + 600px); } }
+@media(prefers-reduced-motion:reduce) { .ar-stack-journey { height: auto; } }

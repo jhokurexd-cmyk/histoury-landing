@@ -103,8 +103,7 @@ function Install() {
           <p className="install-note" data-reveal>
             <Icon name="alert-triangle" size={16} />
             <span>
-              Only install Histoury from this page. An APK from anywhere else
-              hasn't been built by us, and we can't vouch for what's inside it.
+              Only install Histoury from this page.
             </span>
           </p>
         </div>

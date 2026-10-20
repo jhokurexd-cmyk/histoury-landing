@@ -84,6 +84,7 @@ function ArShowcase() {
       const step = Math.min(2, Math.floor(progress * 3));
       desiredStep = step;
       advance();
+
     };
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
@@ -141,7 +142,6 @@ function ArShowcase() {
             {SITES.map((site, index) => <span key={site.name} className={`ar-orbit-dot${index === active ? " is-active" : ""}`} aria-label={site.name} />)}
           </div>
           <p className="ar-stack-name">{SITES[active].name}</p>
-          <p className="ar-stack-scroll">Scroll to explore all three sites <Icon name="arrow-down" size={12} /></p>
         </div>
       </div>
       </div>
@@ -150,6 +150,8 @@ function ArShowcase() {
 }
 
 export default ArShowcase;
+
+
 
 
 

@@ -63,6 +63,10 @@ function Footer() {
       <div className="footer-base">
         <p>A capstone project · Intramuros Historical Tourism Guide · 2026–2027</p>
         <p>All rights reserved.</p>
+        <a className="footer-back-top" href="#top">
+          Back to top
+          <span aria-hidden="true">↑</span>
+        </a>
       </div>
     </footer>
   );
