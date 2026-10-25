@@ -1,0 +1,35 @@
+.walled .sites-journey { overflow-anchor: none; }
+.walled .sites-journey.is-scroll-journey .sites-sticky {
+  position: sticky;
+  top: 82px;
+}
+.walled .arches {
+  display: flex;
+  align-items: stretch;
+  gap: 22px;
+  margin: 0;
+  padding: 0 0 12px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+.walled .arches::-webkit-scrollbar { display: none; }
+.walled .sites-journey.is-scroll-journey .arches {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+.walled .sites-sticky .arch-item {
+  flex: 0 0 clamp(205px, 18vw, 240px);
+}
+.walled .sites-sticky .section-head { margin-bottom: 28px; }
+.walled .arch-item figure { margin: 0; height: 100%; }
+.walled .arch-item:nth-child(n) .arch { width: 100%; aspect-ratio: 4 / 5; max-height: 32svh; }
+.walled .arch-item figcaption { margin: 0; min-height: 94px; }
+.walled .arch-item figcaption strong { font-size: 14px; line-height: 1.4; }
+.walled .arch-item figcaption span { display: block; margin-top: 6px; font-size: 11px; }
+@media (max-width: 900px) {
+  .walled .arches { gap: 14px; }
+  .walled .sites-sticky .arch-item { flex-basis: min(68vw, 280px); }
+  .walled .arch-item:nth-child(n) .arch { aspect-ratio: 4 / 3; }
+  .walled .arch-item figcaption { min-height: 88px; padding: 14px; }
+}
