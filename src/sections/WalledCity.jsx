@@ -15,21 +15,42 @@ function WalledCity() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     let frame = 0;
     let distance = 0;
+    let scrollDistance = 0;
+    let position = cards.scrollLeft;
+    let lastTime = 0;
     let viewportWidth = window.innerWidth;
     let viewportHeight = window.innerHeight;
-    const update = () => {
+    const update = (time) => {
       frame = 0;
-      if (!enabled) return;
-      const progress = Math.max(0, Math.min(1, (82 - journey.getBoundingClientRect().top) / Math.max(1, distance)));
-      cards.scrollLeft = progress * distance;
+      if (!enabled) { lastTime = 0; return; }
+      const progress = Math.max(0, Math.min(1, (82 - journey.getBoundingClientRect().top) / Math.max(1, scrollDistance)));
+      const target = progress * distance;
+      // Time-based easing gives wheel and touch scrolling the same gentle glide
+      // at 60 Hz and on high-refresh displays, without moving the page itself.
+      const elapsed = lastTime ? Math.min(64, time - lastTime) : 16.67;
+      lastTime = time;
+      position += (target - position) * (1 - Math.exp(-elapsed / 110));
+      if (Math.abs(target - position) < 0.5) {
+        position = target;
+        lastTime = 0;
+      } else {
+        frame = requestAnimationFrame(update);
+      }
+      cards.scrollLeft = position;
     };
     const measure = () => {
       distance = Math.max(0, cards.scrollWidth - cards.clientWidth);
+      scrollDistance = distance / 2.5;
       enabled = !reduced.matches && distance > 0 && sticky.offsetHeight < viewportHeight - 90;
       journey.classList.toggle("is-scroll-journey", enabled);
-      journey.style.height = enabled ? `${sticky.offsetHeight + distance}px` : "";
-      if (!enabled) distance = 0;
-      else update();
+      journey.style.height = enabled ? `${sticky.offsetHeight + scrollDistance}px` : "";
+      if (!enabled) {
+        distance = 0;
+        cancelAnimationFrame(frame);
+        frame = 0;
+        lastTime = 0;
+        position = cards.scrollLeft;
+      } else schedule();
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
     const resize = () => {

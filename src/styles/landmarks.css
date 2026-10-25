@@ -33,3 +33,32 @@
   .walled .arch-item:nth-child(n) .arch { aspect-ratio: 4 / 3; }
   .walled .arch-item figcaption { min-height: 88px; padding: 14px; }
 }
+
+/* Soft edges: the strip fades out at a side where more cards are hidden,
+   instead of being cut off by a hard line. Driven by the strip's own
+   scroll position (no fade at the very start or end, none when every card
+   fits). Browsers without scroll-driven animations just keep hard edges. */
+@property --arches-fade-l { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@property --arches-fade-r { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@keyframes arches-edge-fade {
+  0% { --arches-fade-l: 0px; --arches-fade-r: 72px; }
+  6% { --arches-fade-l: 72px; --arches-fade-r: 72px; }
+  94% { --arches-fade-l: 72px; --arches-fade-r: 72px; }
+  100% { --arches-fade-l: 72px; --arches-fade-r: 0px; }
+}
+@supports (animation-timeline: scroll()) {
+  .walled .arches {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 var(--arches-fade-l), #000 calc(100% - var(--arches-fade-r)), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, #000 var(--arches-fade-l), #000 calc(100% - var(--arches-fade-r)), transparent 100%);
+    animation: arches-edge-fade linear both;
+    animation-timeline: scroll(self inline);
+  }
+}
+@media (max-width: 900px) {
+  @keyframes arches-edge-fade {
+    0% { --arches-fade-l: 0px; --arches-fade-r: 40px; }
+    6% { --arches-fade-l: 40px; --arches-fade-r: 40px; }
+    94% { --arches-fade-l: 40px; --arches-fade-r: 40px; }
+    100% { --arches-fade-l: 40px; --arches-fade-r: 0px; }
+  }
+}

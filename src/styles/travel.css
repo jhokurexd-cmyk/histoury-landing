@@ -1,7 +1,7 @@
 /* Travel-inspired presentation: Histoury's coral remains the primary accent. */
 :root { --paper: #fffdfb; --surface: #fff; --surface-2: #fff4f0; --ink: #25283e; --ink-2: #747482; --section-y: clamp(64px, 7vw, 100px); }
 [data-theme="dark"] { --paper: #151416; --surface: #201e22; --surface-2: #302326; --ink: #faf4ef; --ink-2: #b9afb5; }
-.nav { top: 0; max-width: 1200px; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.nav { top: 0; max-width: 1200px; border: 0; border-radius: 0; background: var(--nav-bg); box-shadow: none; }
 .nav.nav-scrolled { background: var(--nav-bg-scrolled); border-radius: 0 0 20px 20px; }
 .nav-inner { height: 94px; padding: 0 24px; }
 .nav-brand { color: var(--ink); font-size: 25px; }
@@ -616,7 +616,7 @@
 
 @media(max-width:600px) {
   .nav, .nav.nav-scrolled {
-    background: color-mix(in srgb, var(--paper) 72%, transparent);
+    background: color-mix(in srgb, var(--paper) 64%, transparent);
     backdrop-filter: blur(18px) saturate(1.4);
     -webkit-backdrop-filter: blur(18px) saturate(1.4);
   }
