@@ -126,10 +126,14 @@ function Steps() {
             ))}
             <span className="mobile-walk-count">{active + 1} / {STEPS.length}</span>
           </div>
-          <div className="mobile-walk-copy" key={active}>
-            <p className="step-kicker"><span className="step-num">{String(active + 1).padStart(2, "0")}</span>{STEPS[active].kicker}</p>
-            <h3>{STEPS[active].title}</h3>
-            <p>{STEPS[active].body}</p>
+          <div className="mobile-walk-copy-stack">
+            {STEPS.map((step, index) => (
+              <div key={step.kicker} className={`mobile-walk-copy${active === index ? " is-active" : ""}`} aria-hidden={active !== index}>
+                <p className="step-kicker"><span className="step-num">{String(index + 1).padStart(2, "0")}</span>{step.kicker}</p>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

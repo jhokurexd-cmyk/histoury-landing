@@ -24,6 +24,7 @@ function Footer() {
               {link.label}
             </a>
           ))}
+          <a href="#patch-notes">Patch notes</a>
         </nav>
 
         <div className="footer-col footer-connect">

@@ -15,7 +15,7 @@ export const LEGAL_PAGES = {
         "If you email support, the team receives your email address, message and any attachments you choose to send. Do not send passwords or other unnecessary sensitive information."
       ] },
       { heading: "Location, camera and permissions", body: [
-        "Location is used to show nearby sites, support directions, recognise arrival, unlock site information and check your presence for on-site AR experiences. With background location permission, arrival notifications can work when the app is not open.",
+        "Location is used to show nearby sites, support directions, recognise arrival, unlock site information and check your presence for on-site AR experiences. With background location permission, arrival notifications can work when the app is not open, and navigation keeps running if you switch apps during a trip.",
         "You can manage permissions in Android settings. Declining or disabling location can prevent arrival detection, location-based unlocking and related features from working. Notification permission controls arrival alerts.",
         "Camera access is used for AR experiences and capturing AR photos. Those photos are saved on your phone rather than uploaded by the AR capture feature. An optional profile photo is handled separately when you upload it."
       ] },
@@ -67,6 +67,7 @@ export const LEGAL_PAGES = {
       ] },
       { heading: "Exploring safely", body: [
         "Watch your surroundings, traffic and uneven ground when using navigation or AR. Respect restricted areas, property rights and instructions from site staff. Do not enter unsafe or closed areas to unlock content.",
+        "Do not hold or operate your phone while driving or riding. Under the Anti-Distracted Driving Act (RA 10913), drivers may not use a mobile device while the vehicle is in motion. Set your route before you go and follow the voice guidance with your phone mounted, or let a passenger operate the app.",
         "Routes, distances, timings and location detection are estimates. GPS accuracy, device conditions and access restrictions can affect arrival recognition and navigation."
       ] },
       { heading: "Historical information and content rights", body: [

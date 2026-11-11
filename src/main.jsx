@@ -7,6 +7,7 @@ import "./styles/shared.css";
 import "./styles/landing.css";
 import "./styles/travel.css";
 import "./styles/motion.css";
+import "./styles/patch-notes.css";
 import App from "./App.jsx";
 import { ThemeProvider } from "./context/ThemeContext.jsx";
 

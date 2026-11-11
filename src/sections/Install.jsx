@@ -45,6 +45,10 @@ function Install() {
           </div>
 
           <DownloadButton className="install-dl" />
+          <a className="install-patch-link" href="#patch-notes">
+            What&rsquo;s new in v{RELEASE.version}
+            <Icon name="arrow-right" size={14} />
+          </a>
           {/* For people reading this on a computer. The SVG is drawn at build
               time from RELEASE.url (vite.config.js), not typed in by hand. */}
           {DOWNLOAD_QR_SVG && (

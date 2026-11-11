@@ -1,0 +1,26 @@
+/* Patch notes page. Uses the shared tokens, so both themes work. */
+.patch-notes .pn-list { list-style: none; margin: 32px 0 0; padding: 0; display: grid; gap: 20px; }
+.pn-entry {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: clamp(18px, 3vw, 28px);
+  box-shadow: var(--shadow-xs);
+  scroll-margin-top: 96px;
+}
+.pn-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
+.pn-head h2 { margin: 0; display: flex; align-items: center; gap: 10px; font-size: 1.5rem; color: var(--text-primary); }
+.pn-head time { color: var(--text-muted); font-size: 0.9rem; }
+.pn-latest {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: var(--r-pill);
+  background: var(--green-bg); color: var(--green-text);
+}
+.pn-group { margin-top: 16px; }
+.pn-group h3 { margin: 0 0 6px; font-size: 0.95rem; }
+.pn-group ul { margin: 0; padding-left: 20px; display: grid; gap: 4px; color: var(--text-secondary); line-height: 1.5; }
+.pn-new { color: var(--blue-text); }
+.pn-improved { color: var(--amber-text); }
+.pn-fixed { color: var(--green-text); }
+.install-patch-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font-weight: 600; color: var(--coral); }
+.install-patch-link:hover { text-decoration: underline; }

@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import CookieBanner from "./components/CookieBanner";
 import Chatbot from "./components/Chatbot";
 import LegalPage from "./components/LegalPage";
+import PatchNotes from "./components/PatchNotes";
 import Hero from "./sections/Hero";
 import ProductDemo from "./sections/ProductDemo";
 import ArShowcase from "./sections/ArShowcase";
@@ -18,9 +19,13 @@ import FinalCta from "./sections/FinalCta";
 import { LEGAL_PAGES } from "./config/legal";
 import { useReveal } from "./hooks/useReveal";
 
-/** The legal page named by the address hash, or null for the landing page. */
+/** Address of the patch notes page, which swaps in like a legal page. */
+const PATCH_NOTES = "patch-notes";
+
+/** The page named by the address hash (legal or patch notes), or null for the landing page. */
 function legalPageFromHash() {
   const key = window.location.hash.replace(/^#/, "");
+  if (key === PATCH_NOTES) return key;
   return Object.hasOwn(LEGAL_PAGES, key) ? key : null;
 }
 
@@ -32,6 +37,23 @@ function legalPageFromHash() {
  */
 function App() {
   const [legalPage, setLegalPage] = useState(legalPageFromHash);
+
+  useLayoutEffect(() => {
+    let width = window.innerWidth;
+    const measure = () => {
+      document.documentElement.classList.toggle("compact-mobile", window.innerHeight <= 740);
+    };
+    const onResize = () => {
+      // Mobile browser chrome changes height while scrolling. Only a real
+      // width/orientation change should choose a different page layout.
+      if (window.innerWidth === width) return;
+      width = window.innerWidth;
+      measure();
+    };
+    measure();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   useEffect(() => {
     const onHashChange = () => setLegalPage(legalPageFromHash());
@@ -66,7 +88,9 @@ function App() {
       <Navbar onLanding={!legalPage} />
 
       <main>
-        {legalPage ? (
+        {legalPage === PATCH_NOTES ? (
+          <PatchNotes />
+        ) : legalPage ? (
           <LegalPage page={legalPage} />
         ) : (
           <>
