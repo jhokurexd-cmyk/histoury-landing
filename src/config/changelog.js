@@ -16,6 +16,14 @@ export const CHANGE_TYPES = {
 
 export const CHANGELOG = [
   {
+    version: "1.0.3",
+    date: "2026-11-12",
+    changes: [
+      { type: "new", text: "The app now tells you when a new version is available" },
+      { type: "fixed", text: "The app no longer closes straight after opening on some phones" },
+    ],
+  },
+  {
     version: "1.0.2",
     date: "2026-11-12",
     changes: [

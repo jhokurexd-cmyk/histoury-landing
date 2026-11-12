@@ -1,0 +1,261 @@
+/* ===========================================================================
+   Two-tone page bands
+   ---------------------------------------------------------------------------
+   The page alternates between two tones, one full screen at a time:
+
+     light band  - warm ivory, the page's own paper colour
+     coral band  - the Histoury coral red, the same family as the closing
+                   call-to-action panel
+
+   A section becomes a coral band by adding the class `band-coral` to it
+   (see WhyHistoury, ProductDemo, Steps and Install). Everything else stays
+   on the light tone, which is simply the page background.
+
+   A coral band re-declares the page's colour tokens for a coral surface:
+   text turns white, cards turn to frosted glass, and anything that is
+   normally coral (buttons, dots, accent words) turns white so it still
+   stands out. Nothing inside a band needs per-component colour overrides.
+
+   To change the two tones, edit --band-light and the three --band-coral-*
+   stops below.
+   =========================================================================== */
+
+:root {
+  --band-light: #FFFDFB;
+  /* Slightly deeper than the #FB4D4C buttons, so white body text on the
+     band stays readable. */
+  --band-coral-1: #F04A48;
+  --band-coral-2: #DF3B39;
+  --band-coral-3: #CB3130;
+}
+
+/* The light tone is the page itself. */
+:root:not([data-theme="dark"]) {
+  --paper: var(--band-light);
+  --stage: var(--band-light);
+  --nav-bg-scrolled: color-mix(in srgb, var(--band-light) 94%, transparent);
+}
+
+/* ---------- One band, one screen ---------- */
+
+/* Every band is at least as tall as the window, with its content centred,
+   so a screen at rest shows one tone and never the seam between two. */
+main > .travel-hero,
+main > .section:not(.legal-page) {
+  min-height: 100vh;
+  min-height: 100svh;
+  align-content: center;
+}
+
+/* Anchor links land a band flush with the top of the window (no strip of
+   the band above showing under the header), so each band's own top padding
+   has to clear the fixed header instead. */
+html {
+  scroll-padding-top: 0;
+}
+
+main > .section:not(.legal-page) {
+  padding-top: max(var(--section-y), 124px);
+}
+
+@media (max-width: 800px) {
+  main > .section:not(.legal-page) {
+    padding-top: max(var(--section-y), 104px);
+  }
+}
+
+/* The header is invisible until the page scrolls, then becomes a solid
+   bar that reads the same over either tone. */
+.nav:not(.nav-scrolled) {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* ---------- The coral band ---------- */
+
+.band-coral {
+  --paper: var(--band-coral-2);
+  --surface: rgba(255, 255, 255, 0.14);
+  --surface-2: rgba(255, 255, 255, 0.22);
+  --line: rgba(255, 255, 255, 0.3);
+  --line-strong: rgba(255, 255, 255, 0.5);
+  --ink: #FFFFFF;
+  --ink-2: rgba(255, 255, 255, 0.92);
+
+  /* Coral on coral would vanish, so the accents turn white here. */
+  --coral: #FFFFFF;
+  --coral-text: #FFECE8;
+  --coral-soft: rgba(255, 255, 255, 0.2);
+  --coral-glow: rgba(90, 16, 14, 0.45);
+  --accent: #FFFFFF;
+  --cta: #FFFFFF;
+  --cta-hover: #FFF1EF;
+  --band-grad: linear-gradient(110deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08));
+  --shadow-card: 0 1px 2px rgba(90, 16, 14, 0.12), 0 12px 32px -12px rgba(90, 16, 14, 0.35);
+  --shadow-lift: 0 2px 4px rgba(90, 16, 14, 0.14), 0 24px 48px -16px rgba(90, 16, 14, 0.5);
+
+  --stage: #C42E2D;
+  --stage-ink: #FFFFFF;
+  --stage-ink-2: rgba(255, 255, 255, 0.88);
+  --stage-line: rgba(255, 255, 255, 0.22);
+  --glow-1: rgba(255, 255, 255, 0.28);
+  --glow-2: rgba(255, 255, 255, 0.12);
+  --grid-line: rgba(255, 255, 255, 0.07);
+  --glass: rgba(255, 255, 255, 0.12);
+  --glass-strong: rgba(255, 255, 255, 0.2);
+  --glass-line: rgba(255, 255, 255, 0.3);
+  --glass-hover: rgba(255, 255, 255, 0.2);
+  --float-shadow: 0 18px 40px -18px rgba(90, 16, 14, 0.6);
+  --device-shadow: 0 40px 80px -30px rgba(90, 16, 14, 0.7);
+  --stage-card-bg:
+    radial-gradient(70% 55% at 50% 100%, rgba(255, 255, 255, 0.22), transparent 70%),
+    var(--stage);
+  --rings: rgba(255, 255, 255, 0.1);
+  --dot-bg: rgba(255, 255, 255, 0.28);
+
+  /* Shared tokens the landing page borrows from shared.css. */
+  --brand-500: #FFFFFF;
+  --brand-600: #FFF1EF;
+  --brand-700: #FFECE8;
+  --brand-soft: rgba(255, 255, 255, 0.16);
+  --brand-soft-strong: rgba(255, 255, 255, 0.26);
+  --bg-card: var(--surface);
+  --bg-inset: var(--surface-2);
+  --border: var(--line);
+  --border-strong: var(--line-strong);
+  --text-primary: var(--ink);
+  --text-secondary: var(--ink-2);
+  --text-muted: rgba(255, 255, 255, 0.8);
+  --green-bg: rgba(255, 255, 255, 0.92);
+  --green-text: #157A45;
+  --amber-bg: rgba(255, 255, 255, 0.16);
+  --amber-text: #FFFFFF;
+  --blue-bg: rgba(255, 255, 255, 0.92);
+  --blue-text: #1D5FC2;
+
+  color: var(--ink);
+}
+
+/* Sections are capped at the page width, so the band is painted by a layer
+   behind the section that is exactly as wide as the window. The layout
+   inside stays as it was. */
+.section.band-coral {
+  position: relative;
+  isolation: isolate;
+}
+
+.section.band-coral::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  z-index: -1;
+  width: 100vw;
+  transform: translateX(-50%);
+  background: linear-gradient(160deg, var(--band-coral-1) 0%, var(--band-coral-2) 55%, var(--band-coral-3) 100%);
+}
+
+/* Buttons on a coral band are white with coral lettering, the same as the
+   download button on the closing coral panel. */
+.band-coral .btn-primary,
+.band-coral .dl-btn {
+  color: #C22F2E;
+  box-shadow: 0 16px 36px -14px rgba(90, 16, 14, 0.55);
+}
+
+.band-coral .dl-btn-icon {
+  background: rgba(251, 77, 76, 0.12);
+}
+
+/* The "you are here" pill under the pinned phone is white on a coral band,
+   so its label takes the coral instead of the usual white. */
+.band-coral .stage-dots li.on {
+  color: #C22F2E;
+}
+
+/* On phones the header is an edge-to-edge bar. Nearly opaque, so a coral
+   band passing underneath doesn't tint it pink. */
+@media (max-width: 600px) {
+  .nav,
+  .nav.nav-scrolled {
+    background: color-mix(in srgb, var(--paper) 94%, transparent);
+  }
+}
+
+/* The floating chat button is coral too: a thin white ring keeps it
+   visible when a coral band is behind it. */
+.chat-launcher:not(:focus-visible) {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 0;
+}
+
+/* ---------- Section refinements ---------- */
+
+/* "More than a map" gets a whole screen to itself now, so its three reasons
+   are real cards with room to breathe instead of a thin row of text. */
+@media (min-width: 901px) {
+  .why .section-head {
+    margin-bottom: 56px;
+  }
+
+  .why .section-title {
+    font-size: clamp(40px, 4.2vw, 60px);
+  }
+
+  .why-grid {
+    gap: 20px;
+    counter-reset: why;
+  }
+
+  .why-tile {
+    padding: 36px 32px 44px;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: var(--surface);
+    counter-increment: why;
+    transition: transform 0.35s var(--ease-out), border-color 0.25s ease, background-color 0.25s ease;
+  }
+
+  .why-tile::after {
+    content: "0" counter(why);
+    position: absolute;
+    top: 34px;
+    right: 32px;
+    font-family: var(--font-head);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: var(--coral-text);
+    opacity: 0.85;
+  }
+
+  .why-tile:hover {
+    border-color: var(--line-strong);
+    background: var(--surface-2);
+  }
+
+  .why-tile .tile-icon {
+    margin-bottom: 28px;
+    color: var(--coral-text);
+  }
+
+  .why-tile h3 {
+    font-size: 21px;
+  }
+
+  .why-tile p {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  /* The pinned site gallery grows with the window so it fills its screen. */
+  .walled .sites-sticky .arch-item {
+    flex-basis: clamp(240px, 20vw, 360px);
+  }
+
+  .walled .arch-item:nth-child(n) .arch {
+    max-height: min(50svh, calc(100svh - 370px));
+  }
+}

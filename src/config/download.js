@@ -21,7 +21,7 @@ function formatSize(bytes) {
 
 export const RELEASE = {
   // Must match versionName in the app's build.gradle.kts.
-  version: "1.0.2",
+  version: "1.0.3",
   // Shown next to the button so people know what they're about to pull over
   // mobile data before they tap it, not after. Taken from the file itself;
   // the fallback is only for an APK hosted off-site (set it by hand then).
@@ -32,13 +32,13 @@ export const RELEASE = {
   // APK is git-ignored, so Vercel never has the file, and a 57 MB binary
   // doesn't belong in every deploy anyway. The release tag must be
   // v<version> and the attached file must keep exactly this name.
-  url: "https://github.com/jhokurexd-cmyk/histoury-landing/releases/download/v1.0.2/histoury-v1.0.2.apk",
+  url: "https://github.com/jhokurexd-cmyk/histoury-landing/releases/download/v1.0.3/histoury-v1.0.3.apk",
   // Published so a careful installer can verify the file they got is the
   // file that was built. Computed from the file at build time for a
   // same-origin APK; for this off-site one it is pasted from:
-  //   certutil -hashfile histoury-v1.0.2.apk SHA256   (Windows)
-  //   shasum -a 256 histoury-v1.0.2.apk               (macOS/Linux)
-  sha256: APK ? APK.sha256 : "0f7a9d51aecee2ea130350bde91a03dc6f9baeb1cf7346ece6dbed185cbdd35f",
+  //   certutil -hashfile histoury-v1.0.3.apk SHA256   (Windows)
+  //   shasum -a 256 histoury-v1.0.3.apk               (macOS/Linux)
+  sha256: APK ? APK.sha256 : "e46a2596f190de52cc08a1a05fddc61b7a2c557732c844bd48b9364fa9f3a265",
 };
 
 /**

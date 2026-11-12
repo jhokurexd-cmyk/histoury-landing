@@ -912,6 +912,129 @@ a.dl-btn-sm {
   color: var(--ink);
 }
 
+/* The code is a button: clicking it opens the same code large (see
+   DownloadQr in Install.jsx), for monitors too small to scan it from. */
+.install-qr-open {
+  position: relative;
+  border: 0;
+  cursor: zoom-in;
+  transition: transform 0.25s var(--ease-out), box-shadow 0.25s ease;
+}
+
+.install-qr-open:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 0 2px var(--coral), var(--shadow-card);
+}
+
+.install-qr-open > span:first-child {
+  display: block;
+}
+
+.install-qr-zoom {
+  position: absolute;
+  right: -7px;
+  bottom: -7px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--surface);
+  border-radius: 50%;
+  background: var(--cta);
+  color: #FFFFFF;
+}
+
+/* White in both themes: a QR code needs a light ground to scan. */
+.qr-dialog {
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 32px);
+  margin: auto;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 28px;
+  background: #FFFFFF;
+  color: #1A1310;
+  box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.6);
+}
+
+.qr-dialog::backdrop {
+  background: rgba(20, 12, 10, 0.66);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.qr-dialog[open] {
+  animation: qr-dialog-in 0.28s var(--ease-out);
+}
+
+@keyframes qr-dialog-in {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: none; }
+}
+
+.qr-dialog-panel {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  padding: clamp(28px, 5vmin, 44px) clamp(24px, 5vmin, 44px) clamp(22px, 4vmin, 32px);
+}
+
+/* As large as the window allows, leaving room for the caption. */
+.qr-dialog-code {
+  width: min(72vmin, 100vh - 230px, 520px);
+  min-width: 200px;
+}
+
+.qr-dialog-code svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.qr-dialog p {
+  max-width: 34ch;
+  font-size: 14.5px;
+  line-height: 1.5;
+  text-align: center;
+  color: #5E524A;
+}
+
+.qr-dialog strong {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #1A1310;
+}
+
+.qr-dialog-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 50%;
+  background: #F3EDE7;
+  color: #1A1310;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.qr-dialog-close:hover {
+  background: #E8DFD6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qr-dialog[open] { animation: none; }
+  .install-qr-open:hover { transform: none; }
+}
+
 @media (max-width: 900px) {
   .demo-grid,
   .ar-grid { grid-template-columns: 1fr; }
