@@ -38,7 +38,7 @@ export const RELEASE = {
   // same-origin APK; for this off-site one it is pasted from:
   //   certutil -hashfile histoury-v1.0.3.apk SHA256   (Windows)
   //   shasum -a 256 histoury-v1.0.3.apk               (macOS/Linux)
-  sha256: APK ? APK.sha256 : "e46a2596f190de52cc08a1a05fddc61b7a2c557732c844bd48b9364fa9f3a265",
+  sha256: APK ? APK.sha256 : "3e675ad0afd03e19ad8f3f950e0cf818ae58c229885f5754bfaf72cbed0efc45",
 };
 
 /**
