@@ -16,6 +16,18 @@ export const CHANGE_TYPES = {
 
 export const CHANGELOG = [
   {
+    version: "1.0.2",
+    date: "2026-11-12",
+    changes: [
+      { type: "improved", text: "Smaller download: about 48 MB, down from 82 MB" },
+      { type: "improved", text: "Google accounts confirm with Google before the account is deleted" },
+      { type: "improved", text: "Deleting your account also removes your AR photos from the phone" },
+      { type: "improved", text: "Updated Privacy Policy, with a one-time notice for existing accounts" },
+      { type: "fixed", text: "The account deleted message now shows after deleting your account" },
+      { type: "fixed", text: "Minor bug fixes and performance improvements" },
+    ],
+  },
+  {
     version: "1.0.1",
     date: "2026-11-12",
     changes: [

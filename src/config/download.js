@@ -21,24 +21,24 @@ function formatSize(bytes) {
 
 export const RELEASE = {
   // Must match versionName in the app's build.gradle.kts.
-  version: "1.0.1",
+  version: "1.0.2",
   // Shown next to the button so people know what they're about to pull over
   // mobile data before they tap it, not after. Taken from the file itself;
   // the fallback is only for an APK hosted off-site (set it by hand then).
-  size: APK ? formatSize(APK.bytes) : "82 MB",
+  size: APK ? formatSize(APK.bytes) : "48 MB",
   // ISO date; formatted for display at the call site.
   released: "2026-11-12",
   // Hosted as a GitHub Release asset rather than in public/downloads/: the
   // APK is git-ignored, so Vercel never has the file, and a 57 MB binary
   // doesn't belong in every deploy anyway. The release tag must be
   // v<version> and the attached file must keep exactly this name.
-  url: "https://github.com/jhokurexd-cmyk/histoury-landing/releases/download/v1.0.1/histoury-v1.0.1.apk",
+  url: "https://github.com/jhokurexd-cmyk/histoury-landing/releases/download/v1.0.2/histoury-v1.0.2.apk",
   // Published so a careful installer can verify the file they got is the
   // file that was built. Computed from the file at build time for a
   // same-origin APK; for this off-site one it is pasted from:
-  //   certutil -hashfile histoury-v1.0.1.apk SHA256   (Windows)
-  //   shasum -a 256 histoury-v1.0.1.apk               (macOS/Linux)
-  sha256: APK ? APK.sha256 : "987660ce40be5371d844074a1b964c4bed654a0bbd3ffebd13bfd5eb37ab0511",
+  //   certutil -hashfile histoury-v1.0.2.apk SHA256   (Windows)
+  //   shasum -a 256 histoury-v1.0.2.apk               (macOS/Linux)
+  sha256: APK ? APK.sha256 : "0f7a9d51aecee2ea130350bde91a03dc6f9baeb1cf7346ece6dbed185cbdd35f",
 };
 
 /**
