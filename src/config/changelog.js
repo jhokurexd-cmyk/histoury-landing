@@ -16,6 +16,18 @@ export const CHANGE_TYPES = {
 
 export const CHANGELOG = [
   {
+    version: "1.1.0",
+    date: "2026-11-15",
+    changes: [
+      { type: "new", text: "Switching AR timelines now plays a short scene with sound and a few lines of history" },
+      { type: "new", text: "Photo credits on site and place pages" },
+      { type: "improved", text: "Offline Downloads now saves every AR timeline of a site" },
+      { type: "improved", text: "New background sounds in AR scenes" },
+      { type: "fixed", text: "Visits recorded without signal are no longer lost after an update" },
+      { type: "fixed", text: "Minor bug fixes and performance improvements" },
+    ],
+  },
+  {
     version: "1.0.3",
     date: "2026-11-12",
     changes: [
