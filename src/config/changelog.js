@@ -16,6 +16,20 @@ export const CHANGE_TYPES = {
 
 export const CHANGELOG = [
   {
+    version: "1.2.0",
+    date: "2026-11-21",
+    changes: [
+      { type: "new", text: "A notification every time you enter a site, and one for each site where sites overlap" },
+      { type: "improved", text: "Arrival notifications appear as soon as you reach a site, even if you were already there when you opened the app" },
+      { type: "improved", text: "AR models load without freezing the camera, with a loading percentage" },
+      { type: "improved", text: "Clearer tips on where to stand before placing an AR model" },
+      { type: "improved", text: "A clear prompt when you walk out of a site while using AR" },
+      { type: "improved", text: "Longer, more complete site stories" },
+      { type: "fixed", text: "Downloads now say when your phone is out of storage instead of waiting forever" },
+      { type: "fixed", text: "Minor bug fixes and performance improvements" },
+    ],
+  },
+  {
     version: "1.1.0",
     date: "2026-11-15",
     changes: [

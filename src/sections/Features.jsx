@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "../components/Icon";
-import offlineShot from "../assets/app/mockup-offline.png";
-import visitsShot from "../assets/app/mockup-visit-history.png";
+import offlineShot from "../assets/app/mockup-offline.webp";
+import visitsShot from "../assets/app/mockup-visit-history.webp";
 import arrivalNotification from "../assets/app/arrival-notification.png";
 import generalLuna from "../assets/photos/general-luna.webp";
 

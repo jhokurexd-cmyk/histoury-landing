@@ -1,9 +1,9 @@
 
 import { Icon } from "../components/Icon";
 import { useEffect, useRef, useState } from "react";
-import fort from "../assets/app/ar-stack-fort-transparent.png";
-import cathedral from "../assets/app/ar-stack-cathedral-transparent.png";
-import sanAgustin from "../assets/app/ar-stack-san-agustin-transparent.png";
+import fort from "../assets/app/ar-stack-fort-transparent.webp";
+import cathedral from "../assets/app/ar-stack-cathedral-transparent.webp";
+import sanAgustin from "../assets/app/ar-stack-san-agustin-transparent.webp";
 import "../styles/ar-stack.css";
 
 const SITES = [
@@ -209,7 +209,7 @@ function ArShowcase() {
               const scale = .925 + depth * .075;
               const y = (1 - depth) * 11;
               return <div key={site.name} className={`ar-stack-phone ar-stack-orbit ar-stack-source-${index}`} style={{ transform: `translate3d(${x}%, ${y}px, 0) scale(${scale}) rotateY(${Math.sin(angle) * -3}deg)`, zIndex: Math.round(100 + depth * 100) }} aria-hidden={index !== active}>
-                <img src={site.image} alt={`${site.name} in Histoury's AR camera`} loading="eager" draggable="false" />
+                <img src={site.image} alt={`${site.name} in Histoury's AR camera`} loading="eager" decoding="async" draggable="false" />
               </div>;
             })}
           </div>

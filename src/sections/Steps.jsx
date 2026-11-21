@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from "react";
 
 import { Device } from "../components/Device";
 import { Icon } from "../components/Icon";
-import mapShot from "../assets/app/mockup-map.png";
-import siteInfoShot from "../assets/app/mockup-history.png";
-import arCaptureShot from "../assets/app/mockup-fort-capture.png";
-import tripShot from "../assets/app/mockup-itinerary.png";
+import mapShot from "../assets/app/mockup-map.webp";
+import siteInfoShot from "../assets/app/mockup-history.webp";
+import arCaptureShot from "../assets/app/mockup-fort-capture.webp";
+import tripShot from "../assets/app/mockup-itinerary.webp";
 
 // The same four beats the app's own onboarding uses, in the same order.
 const STEPS = [

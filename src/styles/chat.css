@@ -80,3 +80,16 @@
   .chat-email { min-height: 42px; }
   .chat-support small, .chat-support > a:last-child:not(.chat-email) { font-size: 11px; overflow-wrap: anywhere; }
 }
+
+/* ARCore device list in an answer: a short scrolling box, so a long brand
+   list (Samsung has ~200) doesn't push the conversation away. */
+.chat-devices {
+  margin: 8px 0 0;
+  padding: 8px 10px 8px 26px;
+  max-height: 180px;
+  overflow-y: auto;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  border-radius: 10px;
+  background: rgba(127, 127, 127, 0.08);
+}

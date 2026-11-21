@@ -2,10 +2,10 @@ import { useRef, useState } from "react";
 
 import { Device } from "../components/Device";
 import { Icon } from "../components/Icon";
-import arrivedShot from "../assets/app/mockup-arrival.png";
-import tripShot from "../assets/app/mockup-itinerary.png";
-import visitsShot from "../assets/app/mockup-visit-history.png";
-import siteInfoShot from "../assets/app/mockup-history.png";
+import arrivedShot from "../assets/app/mockup-arrival.webp";
+import tripShot from "../assets/app/mockup-itinerary.webp";
+import visitsShot from "../assets/app/mockup-visit-history.webp";
+import siteInfoShot from "../assets/app/mockup-history.webp";
 
 // Four real screens, picked to be the ones How it works doesn't already
 // walk through in detail. Each caption describes what the screenshot shows.

@@ -4,6 +4,9 @@ import { CONTACT } from "../config/site";
 import { answerQuestion, CHAT_TOPICS, supportEmail } from "../config/chat";
 import "../styles/chat.css";
 
+// The four suggestions shown before "Browse all topics".
+const QUICK_TOPICS = ["Download & install", "Phone compatibility", "AR experiences", "Contact support"];
+
 const WELCOME = { role: "bot", answer: "Hi, explorer! 👋 I'm Histoury's automated FAQ assistant. What would you like to know about the app?" };
 
 export default function Chatbot() {
@@ -71,12 +74,13 @@ export default function Chatbot() {
           <p className="chat-note">Quick answers from our FAQ. For anything else, we'll point you to support.</p>
           {messages.map((message, index) => <div className={`chat-message chat-message-${message.role}`} key={index}>
             <p>{message.answer}</p>
+            {message.items && <ul className="chat-devices" aria-label="Supported devices">{message.items.map((item) => <li key={item}>{item}</li>)}</ul>}
             {message.link && <a className="chat-answer-link" href={message.link} onClick={() => { if (message.link.startsWith("#")) close(); }} {...(message.link.startsWith("https:") ? { target: "_blank", rel: "noopener noreferrer" } : {})}>{message.linkLabel}<Icon name="arrow-right" size={13} /></a>}
             {message.support && <div className="chat-support"><a className="chat-email" href={supportEmail(message.question)}><Icon name="mail" size={15} /> Email support</a><small>{CONTACT.email}</small><a href={`mailto:${CONTACT.alternateEmail}`}>Or {CONTACT.alternateEmail}</a></div>}
           </div>)}
           {typing && <div className="chat-typing" role="status" aria-label="Preparing a reply"><span /><span /><span /><span className="chat-sr-only">Preparing a reply…</span></div>}
           {!typing && <div className="chat-suggestions" aria-label="Suggested questions">
-            {(topics ? CHAT_TOPICS : [CHAT_TOPICS[1], CHAT_TOPICS[2], CHAT_TOPICS[4], CHAT_TOPICS[13]]).map((topic) => <button key={topic.label} type="button" onClick={() => ask(topic.label)}>{topic.label}</button>)}
+            {(topics ? CHAT_TOPICS : CHAT_TOPICS.filter((topic) => QUICK_TOPICS.includes(topic.label))).map((topic) => <button key={topic.label} type="button" onClick={() => ask(topic.label)}>{topic.label}</button>)}
           </div>}
         </div>
         <div className="chat-tools"><button type="button" onClick={() => setTopics((value) => !value)} aria-expanded={topics}>{topics ? "Fewer topics" : "Browse all topics"}</button><span>FAQ assistant · not live support</span></div>

@@ -19,10 +19,20 @@ export function useReveal(page) {
 
     const observer = new IntersectionObserver(
       (entries) => {
+        // Elements that arrive together cascade in one after another
+        // instead of all at once. Ones that set their own order (--i in
+        // the markup) keep it; the delay itself lives in the stylesheet,
+        // which turns it off on phones and for reduced motion.
+        let order = 0;
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-in");
-          observer.unobserve(entry.target);
+          const el = entry.target;
+          if (!el.style.getPropertyValue("--i")) {
+            el.style.setProperty("--i", String(Math.min(order, 4)));
+            order += 1;
+          }
+          el.classList.add("is-in");
+          observer.unobserve(el);
         });
       },
       { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
