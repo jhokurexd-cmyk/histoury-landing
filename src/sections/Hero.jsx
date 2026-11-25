@@ -1,7 +1,7 @@
 
 import { Icon } from "../components/Icon";
 
-import arComposition from "../assets/app/ar-showcase-transparent.webp";
+import arComposition from "../assets/app/ar-trio.webp";
 import "../styles/hero.css";
 
 function Hero() {
@@ -20,7 +20,7 @@ function Hero() {
           <p className="travel-footnote"><Icon name="check-circle" size={16} /> Free to explore · Made for Android</p>
         </div>
         <figure className="hero-product">
-          <img src={arComposition} alt="Histoury in action: three phones showing historical AR reconstructions of Manila Cathedral, San Agustin Church and Fort Santiago." fetchPriority="high" decoding="async" width="1400" height="933" />
+          <img src={arComposition} alt="Histoury in action: three phones showing historical AR reconstructions of Manila Cathedral, San Agustin Church and Fort Santiago." fetchPriority="high" decoding="async" width="1800" height="1200" />
           <figcaption><span /> A closer look at the past. Through your phone.</figcaption>
         </figure>
       </div>
